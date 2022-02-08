@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileView" customModule="Netology_IB_Instruments" customModuleProvider="target">
+            <connections>
+                <outlet property="birthdayLabel" destination="gm5-1C-R4x" id="d54-i9-Gtu"/>
+                <outlet property="cityLabel" destination="RGu-BR-FSa" id="0XS-Sp-vRH"/>
+                <outlet property="descriptionTextView" destination="E7V-YH-ydZ" id="F2y-23-eaM"/>
+                <outlet property="nameLabel" destination="6ax-hK-qxy" id="S14-WF-u5n"/>
+                <outlet property="profileImage" destination="htZ-Ll-qkS" id="qMU-2p-hdI"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата рождения" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm5-1C-R4x">
+                    <rect key="frame" x="152" y="110" width="246" height="21"/>
+                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Город" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGu-BR-FSa">
+                    <rect key="frame" x="152" y="159" width="246" height="21"/>
+                    <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImage" translatesAutoresizingMaskIntoConstraints="NO" id="htZ-Ll-qkS">
+                    <rect key="frame" x="16" y="60" width="120" height="120"/>
+                    <color key="backgroundColor" systemColor="systemTealColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="Ath-dR-gZv"/>
+                        <constraint firstAttribute="width" constant="120" id="P0N-5n-NzW"/>
+                    </constraints>
+                </imageView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="E7V-YH-ydZ">
+                    <rect key="frame" x="16" y="212" width="382" height="180"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="S44-Es-xnI"/>
+                    </constraints>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ax-hK-qxy">
+                    <rect key="frame" x="152" y="60" width="246" height="21"/>
+                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gm5-1C-R4x" secondAttribute="trailing" constant="16" id="2Nd-dl-Czp"/>
+                <constraint firstItem="6ax-hK-qxy" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="86J-nb-15j"/>
+                <constraint firstItem="htZ-Ll-qkS" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="8vt-pL-lO5"/>
+                <constraint firstItem="E7V-YH-ydZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="AeW-pN-Qtx"/>
+                <constraint firstItem="gm5-1C-R4x" firstAttribute="leading" secondItem="htZ-Ll-qkS" secondAttribute="trailing" constant="16" id="Ks0-dd-QQe"/>
+                <constraint firstItem="E7V-YH-ydZ" firstAttribute="top" secondItem="RGu-BR-FSa" secondAttribute="bottom" constant="32" id="P51-zF-DBL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6ax-hK-qxy" secondAttribute="trailing" constant="16" id="eaz-QB-Nuz"/>
+                <constraint firstItem="htZ-Ll-qkS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="eiI-SU-7fE"/>
+                <constraint firstItem="gm5-1C-R4x" firstAttribute="top" secondItem="6ax-hK-qxy" secondAttribute="bottom" constant="29" id="o7E-MM-dVJ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RGu-BR-FSa" secondAttribute="trailing" constant="16" id="t1E-Yn-mgl"/>
+                <constraint firstItem="RGu-BR-FSa" firstAttribute="leading" secondItem="htZ-Ll-qkS" secondAttribute="trailing" constant="16" id="tAo-Ol-SKN"/>
+                <constraint firstItem="6ax-hK-qxy" firstAttribute="leading" secondItem="htZ-Ll-qkS" secondAttribute="trailing" constant="16" id="wET-Nm-Lel"/>
+                <constraint firstItem="RGu-BR-FSa" firstAttribute="top" secondItem="gm5-1C-R4x" secondAttribute="bottom" constant="28" id="wlV-fb-7Zx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="E7V-YH-ydZ" secondAttribute="trailing" constant="16" id="zq8-WN-7Nd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="116" y="162"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="profileImage" width="250" height="249"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
