@@ -14,10 +14,10 @@ class PostViewController: UIViewController {
         
         view.backgroundColor = .systemYellow
         self.title = "My post"
-
+        
         let vc = FeedViewController()
         self.title = vc.firstPost.title
-
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"),
                                                             style: .plain,
                                                             target: self,

@@ -8,23 +8,23 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
+    let profileHeader = ProfileHeaderView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-        // Do any additional setup after loading the view.
+        
+        view.addSubview(profileHeader)
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillLayoutSubviews(){
+        super.viewWillLayoutSubviews()
+        
+        profileHeader.frame = CGRect(x: self.view.safeAreaInsets.left,
+                                     y: self.view.safeAreaInsets.top,
+                                     width: self.view.frame.width,
+                                     height: self.view.frame.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom)
     }
-    */
-
+    
 }

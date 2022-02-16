@@ -13,12 +13,12 @@ class FeedViewController: UIViewController {
         var title: String
     }
     var firstPost = Posts(title: "About myself")
-
+    
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(button)
