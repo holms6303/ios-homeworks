@@ -19,24 +19,37 @@ class FeedViewController: UIViewController {
         
         super.viewDidLoad()
         
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(button)
-        button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
-        button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
-        button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        button.backgroundColor = .systemOrange
-        button.layer.cornerRadius = 15
-        button.setTitle("Go to post", for: .normal)
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        let feedControllerStack = UIStackView()
+        feedControllerStack.translatesAutoresizingMaskIntoConstraints = false
+        feedControllerStack.axis = .vertical
+        feedControllerStack.spacing = 10.0
+        feedControllerStack.distribution = .fillEqually
+        feedControllerStack.alignment = .fill
+        self.view.addSubview(feedControllerStack)
         
+        let firstButton = UIButton()
+        firstButton.translatesAutoresizingMaskIntoConstraints = false
+        firstButton.backgroundColor = .systemGray
+        firstButton.setTitle("First Button", for: .normal)
+        firstButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        
+        
+        let secondButton = UIButton()
+        secondButton.translatesAutoresizingMaskIntoConstraints = false
+        secondButton.backgroundColor = .systemRed
+        secondButton.setTitle("Second Button", for: .normal)
+        secondButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        
+        feedControllerStack.addArrangedSubview(firstButton)
+        feedControllerStack.addArrangedSubview(secondButton)
+        
+        NSLayoutConstraint.activate([
+            feedControllerStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            feedControllerStack.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
-    
     @objc func didTapButton(sender: UIButton!) {
         
         self.navigationController?.pushViewController(PostViewController(), animated: true)
-        
     }
-    
 }
