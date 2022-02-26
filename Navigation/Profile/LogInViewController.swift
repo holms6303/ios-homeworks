@@ -12,22 +12,36 @@ class LogInViewController: UIViewController {
     let vkLightBlueColor = UIColor(hex: "#4885CC")
 
     private lazy var scrollView: UIScrollView = {
-            let scrollView = UIScrollView()
-            scrollView.translatesAutoresizingMaskIntoConstraints = false
 
-            return scrollView
-        }()
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+
+        return scrollView
+    }()
 
     private lazy var contentView: UIView = {
+
         let contentView = UIView()
         contentView.backgroundColor = .white
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        
 
         return contentView
     }()
 
+    private lazy var logoImage: UIImageView = {
+
+        let image = UIImage(named: "logo.jpg")
+
+        let logoImage = UIImageView()
+        logoImage.translatesAutoresizingMaskIntoConstraints = false
+        logoImage.image = image
+
+        return logoImage
+
+    }()
+
     private lazy var stackView: UIStackView = {
+
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -43,6 +57,7 @@ class LogInViewController: UIViewController {
     }()
 
     private lazy var loginTextField: UITextField = {
+
         let loginTextField = UITextField()
         loginTextField.placeholder = "Email or phone"
         loginTextField.setLeftPaddingPoints(10)
@@ -50,13 +65,12 @@ class LogInViewController: UIViewController {
         loginTextField.backgroundColor = .systemGray6
         loginTextField.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         loginTextField.autocapitalizationType = .none
-//        loginTextField.tintColor =
-//        tint color: accentColor
 
         return loginTextField
     }()
 
     private lazy var passwordTextField: UITextField = {
+
         let passwordTextField = UITextField()
         passwordTextField.placeholder = "Password"
         passwordTextField.setLeftPaddingPoints(10)
@@ -64,18 +78,6 @@ class LogInViewController: UIViewController {
         passwordTextField.backgroundColor = .systemGray6
 
         return passwordTextField
-    }()
-
-    private lazy var logoImage: UIImageView = {
-
-        let image = UIImage(named: "logo.jpg")
-        
-        let logoImage = UIImageView()
-        logoImage.translatesAutoresizingMaskIntoConstraints = false
-        logoImage.image = image
-
-        return logoImage
-
     }()
 
     lazy var logInButton: UIButton = {
@@ -103,14 +105,12 @@ class LogInViewController: UIViewController {
     @objc func buttonPressed(_ sender: UIButton) {
 
         self.navigationController?.pushViewController(ProfileViewController(), animated: true)
-//        удалить навигейшн бар
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureSubviews()
         self.setupConstraints()
-
 
     }
 
@@ -123,9 +123,10 @@ class LogInViewController: UIViewController {
         self.stackView.addArrangedSubview(passwordTextField)
         self.contentView.addSubview(self.logInButton)
 
-        }
+    }
 
     private func setupConstraints() {
+
         let scrollViewTopConstraint = self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor)
         let scrollViewRightConstraint = self.scrollView.rightAnchor.constraint(equalTo: self.view.rightAnchor)
         let scrollViewBottomConstraint = self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
@@ -162,7 +163,6 @@ class LogInViewController: UIViewController {
         ])
 
     }
-
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
