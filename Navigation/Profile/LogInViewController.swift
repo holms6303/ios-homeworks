@@ -30,11 +30,11 @@ class LogInViewController: UIViewController {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.alignment = .leading
+        stackView.alignment = .fill
         stackView.distribution = .fillEqually
-        stackView.spacing = 1
+        stackView.spacing = 0.5
+        stackView.backgroundColor = .lightGray
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.backgroundColor = .systemGray6
         stackView.layer.borderColor = UIColor.lightGray.cgColor
         stackView.layer.borderWidth = 0.5
         stackView.layer.cornerRadius = 10
@@ -45,6 +45,13 @@ class LogInViewController: UIViewController {
     private lazy var loginTextField: UITextField = {
         let loginTextField = UITextField()
         loginTextField.placeholder = "Email or phone"
+        loginTextField.setLeftPaddingPoints(10)
+        loginTextField.textColor = .black
+        loginTextField.backgroundColor = .systemGray6
+        loginTextField.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
+        loginTextField.autocapitalizationType = .none
+//        loginTextField.tintColor =
+//        tint color: accentColor
 
         return loginTextField
     }()
@@ -52,6 +59,9 @@ class LogInViewController: UIViewController {
     private lazy var passwordTextField: UITextField = {
         let passwordTextField = UITextField()
         passwordTextField.placeholder = "Password"
+        passwordTextField.setLeftPaddingPoints(10)
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.backgroundColor = .systemGray6
 
         return passwordTextField
     }()
@@ -70,14 +80,20 @@ class LogInViewController: UIViewController {
 
     lazy var logInButton: UIButton = {
 
+        let backgroundImage = UIImage(named: "blue_pixel.jpg")
+
         let logInButton = UIButton()
         logInButton.translatesAutoresizingMaskIntoConstraints = false
-//        поменять цвет кнопки на изображение
-        logInButton.backgroundColor = .lightGray
+        logInButton.clipsToBounds = true
+        logInButton.setBackgroundImage(backgroundImage, for: .normal)
         logInButton.setTitle("Log In", for: .normal)
         logInButton.titleLabel?.font = .systemFont(ofSize: 16)
         logInButton.setTitleColor(UIColor.white, for: .normal)
         logInButton.layer.cornerRadius = 10.0
+
+        if logInButton.isSelected || logInButton.isHighlighted || logInButton.isEnabled == false {
+            logInButton.backgroundColor?.withAlphaComponent(0.8)
+        }
 
         logInButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
 
@@ -108,6 +124,7 @@ class LogInViewController: UIViewController {
         self.contentView.addSubview(self.logInButton)
 
         }
+
     private func setupConstraints() {
         let scrollViewTopConstraint = self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor)
         let scrollViewRightConstraint = self.scrollView.rightAnchor.constraint(equalTo: self.view.rightAnchor)
@@ -117,11 +134,10 @@ class LogInViewController: UIViewController {
         let contentViewTopConstraint = self.contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor)
         let contentViewCenterXConstraint = self.contentView.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor)
         let contentViewBottomConstraint = self.contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor)
-        let contentViewWidthConstraint = self.contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor)
+        let contentViewWidthConstraint = self.contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor)
 
         let logoImageTopConstraint = self.logoImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120.0)
         let logoImageXCenterConstraint = self.logoImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
-        let logoImageBottomConstraint = self.logoImage.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: 120.0)
         let logoImageHeightConstraint = self.logoImage.heightAnchor.constraint(equalToConstant: 100.0)
         let logoImageWidthConstraint = self.logoImage.widthAnchor.constraint(equalTo: logoImage.heightAnchor, multiplier: 1.0)
 
@@ -129,7 +145,8 @@ class LogInViewController: UIViewController {
         let stackViewRightConstraint = self.stackView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -16.0)
         let stackViewCenterYConstraint = self.stackView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
         let stackViewLeftConstraint = self.stackView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 16.0)
-        let tackViewHeightConstraint = self.stackView.heightAnchor.constraint(equalToConstant: 100.0)
+        let stackViewHeightConstraint = self.stackView.heightAnchor.constraint(equalToConstant: 100.0)
+        let stackViewTopConstraint = self.stackView.topAnchor.constraint(equalTo: self.logoImage.bottomAnchor, constant: 120.0)
 
         let logInButtonTopConstraint = self.logInButton.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 16.0)
         let logInButtonHeightConstraint = self.logInButton.heightAnchor.constraint(equalToConstant: 50.0)
@@ -139,8 +156,8 @@ class LogInViewController: UIViewController {
         NSLayoutConstraint.activate([
             scrollViewTopConstraint, scrollViewRightConstraint, scrollViewBottomConstraint, scrollViewLeftConstraint,
             contentViewTopConstraint, contentViewCenterXConstraint, contentViewBottomConstraint, contentViewWidthConstraint,
-            logoImageTopConstraint, logoImageXCenterConstraint, logoImageBottomConstraint,logoImageHeightConstraint,logoImageWidthConstraint,
-            stackViewCenterXConstraint, stackViewRightConstraint, stackViewCenterYConstraint, stackViewLeftConstraint,tackViewHeightConstraint,
+            logoImageTopConstraint, logoImageXCenterConstraint, logoImageHeightConstraint,logoImageWidthConstraint,
+            stackViewCenterXConstraint, stackViewRightConstraint, stackViewCenterYConstraint, stackViewLeftConstraint,stackViewHeightConstraint, stackViewTopConstraint,
             logInButtonTopConstraint, logInButtonHeightConstraint, logInButtonLeftConstraint, logInButtonRightConstraint
         ])
 
