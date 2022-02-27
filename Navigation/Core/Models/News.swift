@@ -7,6 +7,7 @@
 
 struct News: Decodable {
 
+//    change likes and views to int
     struct Article: Decodable {
         let author, description, image, likes, views: String
 

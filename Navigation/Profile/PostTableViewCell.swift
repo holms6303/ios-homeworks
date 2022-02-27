@@ -25,7 +25,7 @@ class PostTableViewCell: UITableViewCell {
             .layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner
         ]
         //cell background
-        view.backgroundColor = UIColor(hexString: "252525")
+        view.backgroundColor = UIColor(hexString: "ffffff")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -41,9 +41,9 @@ class PostTableViewCell: UITableViewCell {
     private lazy var authorLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
-        label.numberOfLines = 0
-        label.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 22)
-        label.textColor = .white
+        label.numberOfLines = 2
+        label.font = UIFont.systemFont(ofSize: 20.0, weight: .bold)
+        label.textColor = .black
         label.setContentCompressionResistancePriority(UILayoutPriority(250), for: .vertical)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -52,8 +52,8 @@ class PostTableViewCell: UITableViewCell {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont(name: "Georgia", size: 17)
-        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+        label.textColor = .systemGray
         label.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
         label.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -62,20 +62,27 @@ class PostTableViewCell: UITableViewCell {
 
     private lazy var image: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = .yellow
+        image.backgroundColor = .black
+        image.contentMode = .scaleAspectFit
         image.setContentCompressionResistancePriority(UILayoutPriority(750), for: .vertical)
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
 
+//    change data type to Int
     private lazy var likesLabel: UILabel = {
         let likesLabel = UILabel()
+        likesLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
+        likesLabel.textColor = .black
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
         return likesLabel
     }()
 
+    //    change data type to Int
     private lazy var viewsLabel: UILabel = {
         let viewsLabel = UILabel()
+        viewsLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
+        viewsLabel.textColor = .black
         viewsLabel.translatesAutoresizingMaskIntoConstraints = false
 
         return viewsLabel
@@ -113,15 +120,20 @@ class PostTableViewCell: UITableViewCell {
 
         let backViewConstraints = self.backViewConstraints()
         let stackViewConstraints = self.stackViewConstraints()
+        let imageViewConstraints = self.imageViewConstraints()
+//        let likesLabelConstraints = self.likesLabelConstraints()
+//        let viewsLabelConstraints = self.viewsLabelConstraints()
 
-        NSLayoutConstraint.activate(backViewConstraints + stackViewConstraints)
+
+
+        NSLayoutConstraint.activate(backViewConstraints + stackViewConstraints + imageViewConstraints)
     }
 
     private func backViewConstraints() -> [NSLayoutConstraint] {
-        let topConstraint = self.backView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10)
-        let leadingConstraint = self.backView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20)
-        let trailingConstraint = self.backView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20)
-        let bottomConstraint = self.backView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10)
+        let topConstraint = self.backView.topAnchor.constraint(equalTo: self.contentView.topAnchor)
+        let leadingConstraint = self.backView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16)
+        let trailingConstraint = self.backView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16)
+        let bottomConstraint = self.backView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
 
         return [
             topConstraint, leadingConstraint, trailingConstraint, bottomConstraint
@@ -130,14 +142,38 @@ class PostTableViewCell: UITableViewCell {
 
     private func stackViewConstraints() -> [NSLayoutConstraint] {
         let topConstraint = self.stackView.topAnchor.constraint(equalTo: self.backView.topAnchor, constant: 10)
-        let leadingConstraint = self.stackView.leadingAnchor.constraint(equalTo: self.backView.leadingAnchor, constant: 10)
-        let trailingConstraint = self.stackView.trailingAnchor.constraint(equalTo: self.backView.trailingAnchor, constant: -10)
+        let leadingConstraint = self.stackView.leadingAnchor.constraint(equalTo: self.backView.leadingAnchor)
+        let trailingConstraint = self.stackView.trailingAnchor.constraint(equalTo: self.backView.trailingAnchor)
         let bottomConstraint = self.stackView.bottomAnchor.constraint(equalTo: self.backView.bottomAnchor, constant: -10)
 
         return [
             topConstraint, leadingConstraint, trailingConstraint, bottomConstraint
         ]
     }
+
+    private func imageViewConstraints() -> [NSLayoutConstraint] {
+
+        let imageViewHeightAnchor = self.image.heightAnchor.constraint(equalTo: self.image.widthAnchor, multiplier: 1)
+        let imageViewLeadingAnchor = self.image.leadingAnchor.constraint(equalTo: self.backView.leadingAnchor)
+        let imageViewTrailingAnchor = self.image.trailingAnchor.constraint(equalTo: self.backView.trailingAnchor)
+        return [
+            imageViewHeightAnchor, imageViewLeadingAnchor, imageViewTrailingAnchor
+        ]
+    }
+//    private func likesLabelConstraints() -> [NSLayoutConstraint] {
+//let likesLeadingAnchor
+//
+//        return [
+//            imageViewHeightAnchor
+//        ]
+//    }
+//    private func viewsLabelConstraints() -> [NSLayoutConstraint] {
+//        let viewsTrailingAnchor = self.viewsLabel.trailingAnchor.constraint(equalTo: self.backView.trailingAnchor, constant: 16.0)
+//
+//        return [
+//            viewsTrailingAnchor
+//        ]
+//    }
 }
 
 extension PostTableViewCell: Setupable {
