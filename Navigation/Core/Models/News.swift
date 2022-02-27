@@ -5,15 +5,15 @@
 //  Created by Алексей Заметаев on 26.02.2022.
 //
 
-struct News {
+struct News: Decodable {
 
-    struct Article {
-        let author, description, image: String
-        let likes, views: Int
+    struct Article: Decodable {
+        let author, description, image, likes, views: String
+
 
 
         enum CodingKeys: String, CodingKey {
-            case author, description, image
+            case author, description, image, likes, views
         }
     }
 
