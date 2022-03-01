@@ -12,10 +12,16 @@ class TabBar: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        UITabBar.appearance().barTintColor = .systemBackground
-        tabBar.tintColor = .label
+        setupTabBar()
         setupViewControllers()
         
+    }
+
+    func setupTabBar(){
+        UITabBar.appearance().clipsToBounds = true
+        UITabBar.appearance().barTintColor = .systemBackground
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(hexString: "4885CC")], for: .selected)
+        tabBar.tintColor =  UIColor(hexString: "4885CC")
     }
     
     func setupViewControllers() {
