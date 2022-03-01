@@ -111,7 +111,12 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         self.configureSubviews()
         self.setupConstraints()
+        self.hidingKeyboard()
 
+    }
+    func hidingKeyboard(){
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
 
     private func configureSubviews() {

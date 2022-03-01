@@ -32,12 +32,11 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        self.hidingKeyboard()
         self.fetchArticles { [weak self] articles in
             self?.dataSource = articles
             self?.tableView.reloadData()
         }
-        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tap)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +44,11 @@ class ProfileViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
+
+    func hidingKeyboard(){
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+    }
 
     private func setupView() {
 
@@ -64,7 +68,6 @@ class ProfileViewController: UIViewController {
         if let path = Bundle.main.path(forResource: "news", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-//                let jsonObj = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 let news = try self.jsonDecoder.decode(News.self, from: data)
                 print("json data: \(news)")
                 completion(news.articles)
