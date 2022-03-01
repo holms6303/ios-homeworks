@@ -16,9 +16,13 @@ class ProfileViewController: UIViewController {
         
         view.addSubview(profileHeader)
         profileHeader.backgroundColor = .lightGray
+        self.hidingKeyboard()
         
     }
-    
+    private func hidingKeyboard(){
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+    }
     override func viewWillLayoutSubviews(){
         super.viewWillLayoutSubviews()
         

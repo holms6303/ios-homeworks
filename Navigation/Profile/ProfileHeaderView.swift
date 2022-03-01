@@ -108,6 +108,8 @@ class ProfileHeaderView: UIView {
     @objc func buttonPressed(_ sender: UIButton) {
         
         profileStatus.text = statusText
+        statusInputField.text = ""
+        self.endEditing(true)
         print(statusText)
     }
     
