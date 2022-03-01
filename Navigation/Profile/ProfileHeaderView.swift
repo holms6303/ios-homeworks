@@ -144,7 +144,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     private func setupView() {
-        
+
         addSubview(avatarImageView)
         addSubview(fullNameLabel)
         addSubview(statusLabel)
