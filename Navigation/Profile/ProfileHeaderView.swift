@@ -7,12 +7,12 @@
 
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private var statusText = String()
     
-    override init(frame: CGRect){
-        super.init(frame: frame)
+    override init(reuseIdentifier: String?){
+        super.init(reuseIdentifier: reuseIdentifier)
         setupView()
     }
     
@@ -111,18 +111,7 @@ class ProfileHeaderView: UIView {
         statusLabel.text = statusText
         print(statusText)
     }
-    
-    lazy var newButton: UIButton = {
-        
-        let newButton = UIButton()
-        newButton.translatesAutoresizingMaskIntoConstraints = false
-        newButton.setTitle("New Button", for: .normal)
-        newButton.backgroundColor = .green
-        
-        
-        return newButton
-    }()
-    
+
     private func setupLayout(){
         
         NSLayoutConstraint.activate([
@@ -150,11 +139,7 @@ class ProfileHeaderView: UIView {
             setStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16.0),
             setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 36.0),
             setStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16.0),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50.0),
-            
-            newButton.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            newButton.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            newButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
+            setStatusButton.heightAnchor.constraint(equalToConstant: 50.0)
         ])
     }
     
@@ -165,7 +150,6 @@ class ProfileHeaderView: UIView {
         addSubview(statusLabel)
         addSubview(statusTextField)
         addSubview(setStatusButton)
-        addSubview(newButton)
         setupLayout()
     }
 }
