@@ -28,7 +28,7 @@ class InfoViewController: UIViewController, UIAlertViewDelegate {
 
     }
 
-    @objc func didTapButton(sender: UIButton!) {
+    @objc func didTapButton(_ sender: UIButton!) {
 
         let alertController = UIAlertController(title: "Attention, something information", message: "Something message", preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in print("OK button pressed")}))
