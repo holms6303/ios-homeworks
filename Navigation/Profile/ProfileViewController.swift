@@ -32,28 +32,19 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
-//        self.setupNavigationBar()
         self.fetchArticles { [weak self] articles in
             self?.dataSource = articles
             self?.tableView.reloadData()
         }
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-//    private func setupNavigationBar() {
-//        self.navigationItem.title = "Feed"
-//
-//        let navBarAppearance = UINavigationBarAppearance()
-//        navBarAppearance.configureWithOpaqueBackground()
-//        navBarAppearance.backgroundColor = .systemGray6
-//        navBarAppearance.shadowImage = nil
-//        navBarAppearance.shadowColor = nil
-//        self.navigationController?.navigationBar.standardAppearance = navBarAppearance
-//        self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-//    }
+
 
     private func setupView() {
 

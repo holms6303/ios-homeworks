@@ -109,6 +109,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     @objc func buttonPressed(_ sender: UIButton) {
         
         statusLabel.text = statusText
+        statusTextField.text = ""
+        self.endEditing(true)
         print(statusText)
     }
 
