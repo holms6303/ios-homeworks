@@ -170,7 +170,7 @@ extension PostTableViewCell: Setupable {
         self.authorLabel.text = viewModel.author
         self.descriptionLabel.text = viewModel.description
         self.newsImageView.image = UIImage(named: viewModel.image)
-        self.likesLabel.text = viewModel.likes
-        self.viewsLabel.text = viewModel.views
+        self.likesLabel.text = "Likes: " + viewModel.likes
+        self.viewsLabel.text = "Views: " + viewModel.views
     }
 }
