@@ -60,13 +60,13 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
 
-    private lazy var image: UIImageView = {
-        let image = UIImageView()
-        image.backgroundColor = .black
-        image.contentMode = .scaleAspectFit
-        image.setContentCompressionResistancePriority(UILayoutPriority(750), for: .vertical)
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
+    private lazy var newsImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .black
+        imageView.contentMode = .scaleAspectFit
+        imageView.setContentCompressionResistancePriority(UILayoutPriority(750), for: .vertical)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
 
 //    change data type to Int
@@ -101,7 +101,7 @@ class PostTableViewCell: UITableViewCell {
         super.prepareForReuse()
         self.authorLabel.text = nil
         self.descriptionLabel.text = nil
-        self.image.image = nil
+        self.newsImageView.image = nil
         self.likesLabel.text = nil
         self.viewsLabel.text = nil
     }
@@ -113,7 +113,7 @@ class PostTableViewCell: UITableViewCell {
         self.contentView.addSubview(self.backView)
         self.backView.addSubview(self.stackView)
         self.stackView.addArrangedSubview(self.authorLabel)
-        self.stackView.addArrangedSubview(self.image)
+        self.stackView.addArrangedSubview(self.newsImageView)
         self.stackView.addArrangedSubview(self.descriptionLabel)
         self.stackView.addArrangedSubview(self.likesLabel)
         self.stackView.addArrangedSubview(self.viewsLabel)
@@ -153,27 +153,13 @@ class PostTableViewCell: UITableViewCell {
 
     private func imageViewConstraints() -> [NSLayoutConstraint] {
 
-        let imageViewHeightAnchor = self.image.heightAnchor.constraint(equalTo: self.image.widthAnchor, multiplier: 1)
-        let imageViewLeadingAnchor = self.image.leadingAnchor.constraint(equalTo: self.backView.leadingAnchor)
-        let imageViewTrailingAnchor = self.image.trailingAnchor.constraint(equalTo: self.backView.trailingAnchor)
+        let imageViewHeightAnchor = self.newsImageView.heightAnchor.constraint(equalTo: self.newsImageView.widthAnchor, multiplier: 1)
+        let imageViewLeadingAnchor = self.newsImageView.leadingAnchor.constraint(equalTo: self.backView.leadingAnchor)
+        let imageViewTrailingAnchor = self.newsImageView.trailingAnchor.constraint(equalTo: self.backView.trailingAnchor)
         return [
             imageViewHeightAnchor, imageViewLeadingAnchor, imageViewTrailingAnchor
         ]
     }
-//    private func likesLabelConstraints() -> [NSLayoutConstraint] {
-//let likesLeadingAnchor
-//
-//        return [
-//            imageViewHeightAnchor
-//        ]
-//    }
-//    private func viewsLabelConstraints() -> [NSLayoutConstraint] {
-//        let viewsTrailingAnchor = self.viewsLabel.trailingAnchor.constraint(equalTo: self.backView.trailingAnchor, constant: 16.0)
-//
-//        return [
-//            viewsTrailingAnchor
-//        ]
-//    }
 }
 
 extension PostTableViewCell: Setupable {
@@ -183,6 +169,7 @@ extension PostTableViewCell: Setupable {
 
         self.authorLabel.text = viewModel.author
         self.descriptionLabel.text = viewModel.description
+        self.newsImageView.image = UIImage(named: viewModel.image)
         self.likesLabel.text = viewModel.likes
         self.viewsLabel.text = viewModel.views
     }
