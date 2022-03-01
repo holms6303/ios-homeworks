@@ -69,7 +69,15 @@ class PostTableViewCell: UITableViewCell {
         return imageView
     }()
 
-//    change data type to Int
+    private lazy var likesAndViewsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+
+    //    change data type to Int
     private lazy var likesLabel: UILabel = {
         let likesLabel = UILabel()
         likesLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
@@ -81,6 +89,7 @@ class PostTableViewCell: UITableViewCell {
     //    change data type to Int
     private lazy var viewsLabel: UILabel = {
         let viewsLabel = UILabel()
+        viewsLabel.textAlignment = .right
         viewsLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         viewsLabel.textColor = .black
         viewsLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -115,16 +124,13 @@ class PostTableViewCell: UITableViewCell {
         self.stackView.addArrangedSubview(self.authorLabel)
         self.stackView.addArrangedSubview(self.newsImageView)
         self.stackView.addArrangedSubview(self.descriptionLabel)
-        self.stackView.addArrangedSubview(self.likesLabel)
-        self.stackView.addArrangedSubview(self.viewsLabel)
+        self.stackView.addArrangedSubview(self.likesAndViewsStackView)
+        self.likesAndViewsStackView.addArrangedSubview(self.likesLabel)
+        self.likesAndViewsStackView.addArrangedSubview(self.viewsLabel)
 
         let backViewConstraints = self.backViewConstraints()
         let stackViewConstraints = self.stackViewConstraints()
         let imageViewConstraints = self.imageViewConstraints()
-//        let likesLabelConstraints = self.likesLabelConstraints()
-//        let viewsLabelConstraints = self.viewsLabelConstraints()
-
-
 
         NSLayoutConstraint.activate(backViewConstraints + stackViewConstraints + imageViewConstraints)
     }
