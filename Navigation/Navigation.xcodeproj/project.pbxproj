@@ -24,6 +24,7 @@
 		1FB8885627CBAA8C0030B7E0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885527CBAA8C0030B7E0 /* PostTableViewCell.swift */; };
 		1FB8885927CBABA20030B7E0 /* Setupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885827CBABA20030B7E0 /* Setupable.swift */; };
 		1FB8885B27CBAE8D0030B7E0 /* UIColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885A27CBAE8D0030B7E0 /* UIColorExtention.swift */; };
+		1FB8886127CFC1470030B7E0 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8886027CFC1460030B7E0 /* PhotosTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		1FB8885527CBAA8C0030B7E0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		1FB8885827CBABA20030B7E0 /* Setupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setupable.swift; sourceTree = "<group>"; };
 		1FB8885A27CBAE8D0030B7E0 /* UIColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtention.swift; path = Navigation/UIColorExtention.swift; sourceTree = SOURCE_ROOT; };
+		1FB8886027CFC1460030B7E0 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				1F05DA1627B29D2D00070328 /* ProfileViewController.swift */,
 				1FB8885527CBAA8C0030B7E0 /* PostTableViewCell.swift */,
 				1FB63D6327C6719C0055FEEA /* LogInViewController.swift */,
+				1FB8886027CFC1460030B7E0 /* PhotosTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FB8886127CFC1470030B7E0 /* PhotosTableViewCell.swift in Sources */,
 				1F05DA1927B2A5A300070328 /* ViewController.swift in Sources */,
 				1F05DA1727B29D2D00070328 /* ProfileViewController.swift in Sources */,
 				1F05DA1B27B2B68000070328 /* PostViewController.swift in Sources */,
