@@ -41,9 +41,29 @@ class ProfileViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setStatusBarColor()
         navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
 
+    }
+    func setStatusBarColor() {
+        if #available(iOS 13.0, *) {
+            let app = UIApplication.shared
+            let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+
+            let statusbarView = UIView()
+            statusbarView.backgroundColor = UIColor.systemGray6
+            view.addSubview(statusbarView)
+
+            statusbarView.translatesAutoresizingMaskIntoConstraints = false
+            statusbarView.heightAnchor.constraint(equalToConstant: statusBarHeight).isActive = true
+            statusbarView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+            statusbarView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            statusbarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+
+        }
+
+        
+    }
 
     func hidingKeyboard(){
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
