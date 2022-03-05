@@ -7,12 +7,12 @@
 
 import UIKit
 
-class ProfileHeaderView: UITableViewHeaderFooterView {
+class ProfileHeaderView: UIView {
     
     private var statusText = String()
     
-    override init(reuseIdentifier: String?){
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect){
+        super.init(frame: frame)
         setupView()
     }
     
@@ -153,6 +153,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         addSubview(statusTextField)
         addSubview(setStatusButton)
         setupLayout()
+        backgroundColor = .systemGray6
     }
 }
 

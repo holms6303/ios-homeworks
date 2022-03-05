@@ -48,10 +48,12 @@ class PhotosTableViewCell: UITableViewCell {
     }()
 
     private lazy var arrowView: UIImageView = {
-        let arrow = UIImage(named: "arrow.right")
+        let arrow = UIImage(systemName: "arrow.right")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+
 
         let arrowView = UIImageView()
         arrowView.image = arrow
+        arrowView.clipsToBounds = true
         arrowView.translatesAutoresizingMaskIntoConstraints = false
         return arrowView
     }()
@@ -110,9 +112,7 @@ class PhotosTableViewCell: UITableViewCell {
         let trailingConstraint = self.verticalStackView.trailingAnchor.constraint(equalTo: self.backView.trailingAnchor)
         let bottomConstraint = self.verticalStackView.bottomAnchor.constraint(equalTo: self.backView.bottomAnchor)
 
-        return [
-            topConstraint, leadingConstraint, trailingConstraint, bottomConstraint
-        ]
+        return [ topConstraint, leadingConstraint, trailingConstraint, bottomConstraint ]
     }
 
 }
