@@ -26,6 +26,7 @@
 		1FB8885B27CBAE8D0030B7E0 /* UIColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885A27CBAE8D0030B7E0 /* UIColorExtention.swift */; };
 		1FB8886127CFC1470030B7E0 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8886027CFC1460030B7E0 /* PhotosTableViewCell.swift */; };
 		1FB8886527D4F78B0030B7E0 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8886427D4F78B0030B7E0 /* PhotosViewController.swift */; };
+		1FB8886727D5063E0030B7E0 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8886627D5063E0030B7E0 /* PhotosCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		1FB8885A27CBAE8D0030B7E0 /* UIColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtention.swift; path = Navigation/UIColorExtention.swift; sourceTree = SOURCE_ROOT; };
 		1FB8886027CFC1460030B7E0 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		1FB8886427D4F78B0030B7E0 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		1FB8886627D5063E0030B7E0 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				1FB63D6327C6719C0055FEEA /* LogInViewController.swift */,
 				1FB8886027CFC1460030B7E0 /* PhotosTableViewCell.swift */,
 				1FB8886427D4F78B0030B7E0 /* PhotosViewController.swift */,
+				1FB8886627D5063E0030B7E0 /* PhotosCollectionViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				1FB63D6427C6719C0055FEEA /* LogInViewController.swift in Sources */,
 				1F05DA1127B2950C00070328 /* TabBar.swift in Sources */,
 				1FB8885927CBABA20030B7E0 /* Setupable.swift in Sources */,
+				1FB8886727D5063E0030B7E0 /* PhotosCollectionViewCell.swift in Sources */,
 				1FB8885B27CBAE8D0030B7E0 /* UIColorExtention.swift in Sources */,
 				1FB8885627CBAA8C0030B7E0 /* PostTableViewCell.swift in Sources */,
 			);
