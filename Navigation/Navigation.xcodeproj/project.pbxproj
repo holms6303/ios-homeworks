@@ -28,6 +28,7 @@
 		1FB8886527D4F78B0030B7E0 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8886427D4F78B0030B7E0 /* PhotosViewController.swift */; };
 		1FB8886727D5063E0030B7E0 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8886627D5063E0030B7E0 /* PhotosCollectionViewCell.swift */; };
 		1FB8886927D60A150030B7E0 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8886827D60A150030B7E0 /* Photos.swift */; };
+		1FB8886B27D64B1B0030B7E0 /* GestureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8886A27D64B1A0030B7E0 /* GestureViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		1FB8886427D4F78B0030B7E0 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		1FB8886627D5063E0030B7E0 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FB8886827D60A150030B7E0 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		1FB8886A27D64B1A0030B7E0 /* GestureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				1FB8886027CFC1460030B7E0 /* PhotosTableViewCell.swift */,
 				1FB8886427D4F78B0030B7E0 /* PhotosViewController.swift */,
 				1FB8886627D5063E0030B7E0 /* PhotosCollectionViewCell.swift */,
+				1FB8886A27D64B1A0030B7E0 /* GestureViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				1F05DA1727B29D2D00070328 /* ProfileViewController.swift in Sources */,
 				1F05DA1B27B2B68000070328 /* PostViewController.swift in Sources */,
 				1F05D9FD27B28E1D00070328 /* AppDelegate.swift in Sources */,
+				1FB8886B27D64B1B0030B7E0 /* GestureViewController.swift in Sources */,
 				1F3C20A027B936F700B11839 /* ProfileHeaderView.swift in Sources */,
 				1F05DA1527B29D0800070328 /* FeedViewController.swift in Sources */,
 				1FB8885027CA7DF30030B7E0 /* News.swift in Sources */,

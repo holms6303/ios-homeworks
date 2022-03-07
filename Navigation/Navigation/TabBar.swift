@@ -27,7 +27,8 @@ class TabBar: UITabBarController {
     func setupViewControllers() {
         viewControllers = [
             createNavController(for: FeedViewController(), title: NSLocalizedString("Feed", comment: ""), image: UIImage(systemName: "house.fill")!),
-            createNavController(for: LogInViewController(), title: NSLocalizedString("Profile", comment: ""), image: UIImage(systemName: "person.fill")!)
+            createNavController(for: LogInViewController(), title: NSLocalizedString("Profile", comment: ""), image: UIImage(systemName: "person.fill")!),
+            createNavController(for: GestureViewController(), title: NSLocalizedString("Gesture", comment: ""), image: UIImage(systemName: "swift")!)
         ]
     }
     
