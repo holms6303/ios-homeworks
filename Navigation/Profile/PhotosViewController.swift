@@ -30,7 +30,28 @@ class PhotosViewController: UIViewController {
         
         return collectionView
     }()
-    
+
+    private var collectionDataSource : [CollectionViewModel] = [CollectionViewModel(image: "61976139.jpeg"),
+                                                                CollectionViewModel(image: "arhiv-uzhasov.jpeg"),
+                                                                CollectionViewModel(image: "cover.jpeg"),
+                                                                CollectionViewModel(image: "dveri-shkafchiki.jpeg"),
+                                                                CollectionViewModel(image: "futuristic car UI.jpeg"),
+                                                                CollectionViewModel(image: "gory-les.jpeg"),
+                                                                CollectionViewModel(image: "graviti-folz.jpeg"),
+                                                                CollectionViewModel(image: "horizon-zero-dawn.jpeg"),
+                                                                CollectionViewModel(image: "kak-vyzhit.jpeg"),
+                                                                CollectionViewModel(image: "kluchi-lokkov.jpeg"),
+                                                                CollectionViewModel(image: "klyki.jpeg"),
+                                                                CollectionViewModel(image: "komicheskaya-tragediya.jpeg"),
+                                                                CollectionViewModel(image: "legenda-o-volkah.jpeg"),
+                                                                CollectionViewModel(image: "letchiki-geroi.jpeg"),
+                                                                CollectionViewModel(image: "made-in-abyss.jpeg"),
+                                                                CollectionViewModel(image: "planeta-kratery.jpeg"),
+                                                                CollectionViewModel(image: "prizrak-strany-rozhdestva.jpeg"),
+                                                                CollectionViewModel(image: "ragnarek.jpeg"),
+                                                                CollectionViewModel(image: "skaly-ozero.jpeg"),
+                                                                CollectionViewModel(image: "tekstura-trava.jpeg")]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
@@ -64,8 +85,7 @@ class PhotosViewController: UIViewController {
 
 extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //        количество ячеек в секции
-        return 150
+        return self.collectionDataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -75,7 +95,9 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
             return cell
         }
         cell.backgroundColor = .systemGray6
-        cell.setup(with: "cover.jpg")
+        let photos = collectionDataSource[indexPath.row]
+        cell.photoGalleryImages.image = UIImage(named: photos.image)
+        cell.photoGalleryImages.contentMode = .scaleAspectFill
         return cell
         
     }

@@ -11,6 +11,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
 
     lazy var photoGalleryImages: UIImageView = {
         let photoGalleryImages = UIImageView()
+        photoGalleryImages.clipsToBounds = true
         photoGalleryImages.translatesAutoresizingMaskIntoConstraints = false
         return photoGalleryImages
     }()
@@ -29,9 +30,5 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    // не заполняется ячейка, переделать через json
-    func setup(with imgURL: String) {
-        self.photoGalleryImages.image = UIImage(named: imgURL)
     }
 }
