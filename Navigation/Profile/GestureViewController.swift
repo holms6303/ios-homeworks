@@ -118,7 +118,7 @@ class GestureViewController: UIViewController {
 
         self.isExpanded.toggle()
 
-        let avatarCenterYConstant = (UIScreen.main.bounds.height - UIScreen.main.bounds.width) / 2
+        let avatarCenterYConstant = (view.safeAreaLayoutGuide.layoutFrame.size.height - UIScreen.main.bounds.width) / 2
 
         self.avatarViewTopConstraint?.constant = self.isExpanded ? avatarCenterYConstant : 20
         self.avatarViewLeadingConstraint?.constant = self.isExpanded ? 0 : 20
