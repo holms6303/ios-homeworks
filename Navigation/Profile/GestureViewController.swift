@@ -5,9 +5,6 @@
 //  Created by Алексей Заметаев on 07.03.2022.
 //
 
-
-//MARK: Change constraints to landscape orientation.
-
 import UIKit
 
 class GestureViewController: UIViewController {
@@ -43,22 +40,18 @@ class GestureViewController: UIViewController {
         closeButton.setImage(buttonImage, for: .normal)
         closeButton.alpha = 0
         closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
-
         return closeButton
     }()
 
-    private let screenWidth = UIScreen.main.bounds.width
-    private let screenHeight = UIScreen.main.bounds.height
-
-    private var avatarViewCenterXConstraint: NSLayoutConstraint?
-    private var avatarViewCenterYConstraint: NSLayoutConstraint?
+    private var avatarViewTopConstraint: NSLayoutConstraint?
+    private var avatarViewLeadingConstraint: NSLayoutConstraint?
     private var avatarViewHeightConstraint: NSLayoutConstraint?
     private var avatarViewWidthConstraint: NSLayoutConstraint?
 
-    private var alphaViewCenterXConstraint: NSLayoutConstraint?
-    private var alphaViewCenterYConstraint: NSLayoutConstraint?
-    private var alphaViewHeightConstraint: NSLayoutConstraint?
-    private var alphaViewWidthConstraint: NSLayoutConstraint?
+    private var alphaViewTopConstraint: NSLayoutConstraint?
+    private var alphaViewBottomConstraint: NSLayoutConstraint?
+    private var alphaViewLeadingConstraint: NSLayoutConstraint?
+    private var alphaViewTrailingConstraint: NSLayoutConstraint?
 
     private var isExpanded = false
 
@@ -78,15 +71,15 @@ class GestureViewController: UIViewController {
         self.view.bringSubviewToFront(self.gestureAvatarImageView)
         self.view.bringSubviewToFront(self.closeButton)
 
-        self.avatarViewCenterXConstraint = self.gestureAvatarImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -1 * (screenWidth * 0.5 - 91))
-        self.avatarViewCenterYConstraint = self.gestureAvatarImageView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor, constant: -1 * (screenHeight * 0.5 - 166))
+        self.avatarViewTopConstraint = self.gestureAvatarImageView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20.0)
+        self.avatarViewLeadingConstraint = self.gestureAvatarImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20.0)
         self.avatarViewHeightConstraint = self.gestureAvatarImageView.heightAnchor.constraint(equalToConstant: 125)
         self.avatarViewWidthConstraint = self.gestureAvatarImageView.widthAnchor.constraint(equalToConstant: 125)
 
-        self.alphaViewCenterXConstraint = self.alphaView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
-        self.alphaViewCenterYConstraint = self.alphaView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-        self.alphaViewHeightConstraint = self.alphaView.heightAnchor.constraint(equalToConstant: screenHeight)
-        self.alphaViewWidthConstraint = self.alphaView.widthAnchor.constraint(equalToConstant: screenWidth)
+        self.alphaViewTopConstraint = self.alphaView.topAnchor.constraint(equalTo: self.view.topAnchor)
+        self.alphaViewBottomConstraint = self.alphaView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        self.alphaViewLeadingConstraint = self.alphaView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
+        self.alphaViewTrailingConstraint = self.alphaView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
 
         let closeButtonTopConstraint = self.closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10.0)
         let closeButtonTrailingConstraint = self.closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10.0)
@@ -96,21 +89,22 @@ class GestureViewController: UIViewController {
 
 
         NSLayoutConstraint.activate([
-            self.avatarViewCenterXConstraint,
-            self.avatarViewCenterYConstraint,
+            self.avatarViewTopConstraint,
+            self.avatarViewLeadingConstraint,
             self.avatarViewHeightConstraint,
             self.avatarViewWidthConstraint,
 
-            self.alphaViewCenterXConstraint,
-            self.alphaViewCenterYConstraint,
-            self.alphaViewHeightConstraint,
-            self.alphaViewWidthConstraint,
+            self.alphaViewTopConstraint,
+            self.alphaViewBottomConstraint,
+            self.alphaViewLeadingConstraint,
+            self.alphaViewTrailingConstraint,
 
             closeButtonTopConstraint,
             closeButtonTrailingConstraint,
             closeButtonHeightConstraint,
             closeButtonWidthConstraint
         ].compactMap({ $0 }))
+
     }
 
     private func setupGesture() {
@@ -124,10 +118,12 @@ class GestureViewController: UIViewController {
 
         self.isExpanded.toggle()
 
-        self.avatarViewCenterXConstraint?.constant = self.isExpanded ? 0 : -1 * (screenWidth * 0.5 - 91)
-        self.avatarViewCenterYConstraint?.constant = self.isExpanded ? 0 : -1 * (screenHeight * 0.5 - 166)
-        self.avatarViewHeightConstraint?.constant = self.isExpanded ? screenWidth : 125
-        self.avatarViewWidthConstraint?.constant = self.isExpanded ? screenWidth : 125
+        let avatarCenterYConstant = (UIScreen.main.bounds.height - UIScreen.main.bounds.width) / 2
+
+        self.avatarViewTopConstraint?.constant = self.isExpanded ? avatarCenterYConstant : 20
+        self.avatarViewLeadingConstraint?.constant = self.isExpanded ? 0 : 20
+        self.avatarViewHeightConstraint?.constant = self.isExpanded ? UIScreen.main.bounds.width : 125
+        self.avatarViewWidthConstraint?.constant = self.isExpanded ? UIScreen.main.bounds.width : 125
 
         if self.isExpanded {
             self.alphaView.isHidden = false
@@ -149,7 +145,6 @@ class GestureViewController: UIViewController {
         }
     }
 
-
     @objc func didTapCloseButton() {
         UIView.animate(withDuration: 0.5) {
             self.closeButton.isHidden = true
@@ -157,8 +152,8 @@ class GestureViewController: UIViewController {
             self.gestureAvatarImageView.layer.cornerRadius = 62.5
 
             if self.isExpanded {
-                self.avatarViewCenterXConstraint?.constant = -1 * (self.screenWidth * 0.5 - 91)
-                self.avatarViewCenterYConstraint?.constant = -1 * (self.screenHeight * 0.5 - 166)
+                self.avatarViewTopConstraint?.constant = 20
+                self.avatarViewLeadingConstraint?.constant = 20
                 self.avatarViewHeightConstraint?.constant = 125
                 self.avatarViewWidthConstraint?.constant = 125
             }
