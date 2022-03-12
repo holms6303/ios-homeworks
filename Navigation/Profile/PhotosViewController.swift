@@ -108,4 +108,13 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
         let spacing = ( collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing
         return self.itemSize(for: collectionView.frame.width, with: spacing ?? 0)
     }
+// try to animate cell by tap
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let cell = collectionView.cellForItem(at: indexPath)
+//            UIView.animate(withDuration: 0.5) {
+//                cell?.
+//
+//            }
+//
+//    }
 }
