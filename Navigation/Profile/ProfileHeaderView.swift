@@ -107,11 +107,17 @@ class ProfileHeaderView: UIView {
     }()
     
     @objc func buttonPressed(_ sender: UIButton) {
-        
-        statusLabel.text = statusText
-        statusTextField.text = ""
-        self.endEditing(true)
-        print(statusText)
+
+        if statusTextField.hasText {
+            statusLabel.text = statusText
+            statusTextField.text = ""
+            statusTextField.layer.borderColor = UIColor.black.cgColor
+            statusTextField.layer.borderWidth = 1.0
+            self.endEditing(true)
+        } else {
+        statusTextField.layer.borderColor = UIColor.red.cgColor
+        statusTextField.layer.borderWidth = 1.5
+        }
     }
 
     private func setupLayout(){
