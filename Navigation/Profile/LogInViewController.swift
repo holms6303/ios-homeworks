@@ -106,7 +106,7 @@ class LogInViewController: UIViewController {
 
         self.isExpanded.toggle()
 
-        if loginTextField.hasText && passwordTextField.hasText {
+        if loginTextField.text == "qwerty" && (passwordTextField.text?.count)! >= 2 && passwordTextField.text == "qw" {
             self.navigationController?.pushViewController(ProfileViewController(), animated: true)
             self.loginTextField.text = ""
             self.passwordTextField.text = ""
@@ -115,10 +115,12 @@ class LogInViewController: UIViewController {
                 self.setupErrorStackView()
                 self.wrongPasswordLabel.isHidden = false
                 if self.isExpanded {
-                    self.logInButtonTopConstraint?.constant = 46
-                }
+                    self.logInButtonTopConstraint?.constant = 46}
                 self.view.layoutIfNeeded()
             } completion: { _ in
+                let alertController = UIAlertController(title: "Attention, login or password is incorrect.", message: "Please enter correct information.", preferredStyle: .actionSheet)
+                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                self.present(alertController, animated: true)
             }
         }
     }
@@ -144,14 +146,24 @@ class LogInViewController: UIViewController {
 
     }
 
-    func setupErrorStackView(){
+    private func setupErrorStackView(){
         stackView.layer.borderColor = UIColor.red.cgColor
         stackView.layer.borderWidth = 1.0
         stackView.backgroundColor = UIColor.red
-        loginTextField.attributedPlaceholder = NSAttributedString(string: "Incorrect login",
-                                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Incorrect password",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+        loginTextField.placeholder = "Incorrect login"
+        passwordTextField.placeholder = "Incorrect password"
+
+
+    }
+    //    I know what repeat code is a bad practice
+    private func setupErrorStackViewToDefault(){
+        stackView.layer.borderColor = UIColor.lightGray.cgColor
+        stackView.layer.borderWidth = 0.5
+        stackView.backgroundColor = .lightGray
+        loginTextField.placeholder = "Email or phone"
+        passwordTextField.placeholder = "Password"
+        wrongPasswordLabel.isHidden = true
+        logInButtonTopConstraint?.constant = 16
     }
 
     func hidingKeyboard(){
@@ -248,6 +260,7 @@ class LogInViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.setupErrorStackViewToDefault()
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
