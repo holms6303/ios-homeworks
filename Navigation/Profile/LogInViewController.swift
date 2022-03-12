@@ -103,13 +103,38 @@ class LogInViewController: UIViewController {
     }()
 
     @objc func buttonPressed(_ sender: UIButton) {
-        
-        if loginTextField.hasText || passwordTextField.hasText {
+
+        self.isExpanded.toggle()
+
+        if loginTextField.hasText && passwordTextField.hasText {
             self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+            self.loginTextField.text = ""
+            self.passwordTextField.text = ""
         } else {
-            setupErrorStackView()
+            UIView.animate(withDuration: 0.5) {
+                self.setupErrorStackView()
+                self.wrongPasswordLabel.isHidden = false
+                if self.isExpanded {
+                    self.logInButtonTopConstraint?.constant = 46
+                }
+                self.view.layoutIfNeeded()
+            } completion: { _ in
+            }
         }
     }
+
+    lazy var wrongPasswordLabel: UILabel = {
+        let wrongPasswordLabel = UILabel()
+        wrongPasswordLabel.translatesAutoresizingMaskIntoConstraints = false
+        wrongPasswordLabel.textColor = .red
+        wrongPasswordLabel.text = "Your password is too short. Need 8 symbols or more"
+        wrongPasswordLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
+        wrongPasswordLabel.isHidden = true
+        return wrongPasswordLabel
+    }()
+
+    private var logInButtonTopConstraint: NSLayoutConstraint?
+    private var isExpanded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,9 +148,9 @@ class LogInViewController: UIViewController {
         stackView.layer.borderColor = UIColor.red.cgColor
         stackView.layer.borderWidth = 1.0
         stackView.backgroundColor = UIColor.red
-        loginTextField.attributedPlaceholder = NSAttributedString(string: "Не верный логин",
+        loginTextField.attributedPlaceholder = NSAttributedString(string: "Incorrect login",
                                                                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Не верный пароль",
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Incorrect password",
                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
     }
 
@@ -142,6 +167,7 @@ class LogInViewController: UIViewController {
         self.stackView.addArrangedSubview(loginTextField)
         self.stackView.addArrangedSubview(passwordTextField)
         self.contentView.addSubview(self.logInButton)
+        self.contentView.addSubview(self.wrongPasswordLabel)
 
     }
 
@@ -169,18 +195,49 @@ class LogInViewController: UIViewController {
         let stackViewHeightConstraint = self.stackView.heightAnchor.constraint(equalToConstant: 100.0)
         let stackViewTopConstraint = self.stackView.topAnchor.constraint(equalTo: self.logoImage.bottomAnchor, constant: 120.0)
 
-        let logInButtonTopConstraint = self.logInButton.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 16.0)
+        self.logInButtonTopConstraint = self.logInButton.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 16.0)
         let logInButtonHeightConstraint = self.logInButton.heightAnchor.constraint(equalToConstant: 50.0)
         let logInButtonLeftConstraint = self.logInButton.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16.0)
         let logInButtonRightConstraint = self.logInButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16.0)
 
+        let wrongPasswordLabelTopConstraint = self.wrongPasswordLabel.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 10.0)
+        let wrongPasswordLabelLeftConstraint = self.wrongPasswordLabel.leadingAnchor.constraint(equalTo: self.stackView.leadingAnchor)
+        let wrongPasswordLabelRightConstraint = self.wrongPasswordLabel.trailingAnchor.constraint(equalTo: self.stackView.trailingAnchor)
+        let wrongPasswordLabelHeightConstraint = self.wrongPasswordLabel.heightAnchor.constraint(equalToConstant: 30.0)
+
         NSLayoutConstraint.activate([
-            scrollViewTopConstraint, scrollViewRightConstraint, scrollViewBottomConstraint, scrollViewLeftConstraint,
-            contentViewTopConstraint, contentViewCenterXConstraint, contentViewBottomConstraint, contentViewWidthConstraint,
-            logoImageTopConstraint, logoImageXCenterConstraint, logoImageHeightConstraint,logoImageWidthConstraint,
-            stackViewCenterXConstraint, stackViewRightConstraint, stackViewCenterYConstraint, stackViewLeftConstraint,stackViewHeightConstraint, stackViewTopConstraint,
-            logInButtonTopConstraint, logInButtonHeightConstraint, logInButtonLeftConstraint, logInButtonRightConstraint
-        ])
+            scrollViewTopConstraint,
+            scrollViewRightConstraint,
+            scrollViewBottomConstraint,
+            scrollViewLeftConstraint,
+
+            contentViewTopConstraint,
+            contentViewCenterXConstraint,
+            contentViewBottomConstraint,
+            contentViewWidthConstraint,
+            
+            logoImageTopConstraint,
+            logoImageXCenterConstraint,
+            logoImageHeightConstraint,
+            logoImageWidthConstraint,
+
+            stackViewCenterXConstraint,
+            stackViewRightConstraint,
+            stackViewCenterYConstraint,
+            stackViewLeftConstraint,
+            stackViewHeightConstraint,
+            stackViewTopConstraint,
+
+            self.logInButtonTopConstraint,
+            logInButtonHeightConstraint,
+            logInButtonLeftConstraint,
+            logInButtonRightConstraint,
+
+            wrongPasswordLabelTopConstraint,
+            wrongPasswordLabelLeftConstraint,
+            wrongPasswordLabelRightConstraint,
+            wrongPasswordLabelHeightConstraint
+        ].compactMap({ $0 }))
 
     }
 
