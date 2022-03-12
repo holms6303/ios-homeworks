@@ -103,8 +103,12 @@ class LogInViewController: UIViewController {
     }()
 
     @objc func buttonPressed(_ sender: UIButton) {
-
-        self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+        
+        if loginTextField.hasText || passwordTextField.hasText {
+            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+        } else {
+            setupErrorStackView()
+        }
     }
 
     override func viewDidLoad() {
@@ -114,6 +118,17 @@ class LogInViewController: UIViewController {
         self.hidingKeyboard()
 
     }
+
+    func setupErrorStackView(){
+        stackView.layer.borderColor = UIColor.red.cgColor
+        stackView.layer.borderWidth = 1.0
+        stackView.backgroundColor = UIColor.red
+        loginTextField.attributedPlaceholder = NSAttributedString(string: "Не верный логин",
+                                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Не верный пароль",
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+    }
+
     func hidingKeyboard(){
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
