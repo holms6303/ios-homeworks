@@ -28,10 +28,12 @@ class ProfileViewController: UIViewController {
     }()
 
     private var dataSource: [News.Article] = []
+    private let tapGestureRecogniser = UITapGestureRecognizer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        self.setupGesture()
         self.hidingKeyboard()
         self.fetchArticles { [weak self] articles in
             self?.dataSource = articles
@@ -63,6 +65,20 @@ class ProfileViewController: UIViewController {
         }
 
         
+    }
+
+    private func setupGesture() {
+
+//        choose target to gesture
+        self.tapGestureRecogniser.numberOfTapsRequired = 1
+        self.tapGestureRecogniser.addTarget(self, action: #selector(self.handleTapGesture(_:)))
+        self.view.addGestureRecognizer(self.tapGestureRecogniser)
+    }
+
+    @objc private func handleTapGesture(_ gestureRecognizer: UITapGestureRecognizer) {
+        guard self.tapGestureRecogniser === gestureRecognizer else { return }
+//      logarithmic operation Likes + 1
+
     }
 
     func hidingKeyboard(){
