@@ -13,8 +13,8 @@ class PostTableViewCell: UITableViewCell {
         let author: String
         let description: String
         let image: String
-        let likes: String
-        let views: String
+        let likes: Int
+        let views: Int
     }
 
     private lazy var backView: UIView = {
@@ -77,7 +77,6 @@ class PostTableViewCell: UITableViewCell {
         return stackView
     }()
 
-    //    change data type to Int
     private lazy var likesLabel: UILabel = {
         let likesLabel = UILabel()
         likesLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
@@ -86,7 +85,6 @@ class PostTableViewCell: UITableViewCell {
         return likesLabel
     }()
 
-    //    change data type to Int
     private lazy var viewsLabel: UILabel = {
         let viewsLabel = UILabel()
         viewsLabel.textAlignment = .right
@@ -176,7 +174,7 @@ extension PostTableViewCell: Setupable {
         self.authorLabel.text = viewModel.author
         self.descriptionLabel.text = viewModel.description
         self.newsImageView.image = UIImage(named: viewModel.image)
-        self.likesLabel.text = "Likes: " + viewModel.likes
-        self.viewsLabel.text = "Views: " + viewModel.views
+        self.likesLabel.text = "Likes: " + String(viewModel.likes)
+        self.viewsLabel.text = "Views: " + String(viewModel.views)
     }
 }

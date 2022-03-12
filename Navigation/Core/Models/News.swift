@@ -7,11 +7,9 @@
 
 struct News: Decodable {
 
-//    change likes and views to int
     struct Article: Decodable {
-        let author, description, image, likes, views: String
-
-
+        let author, description, image: String
+        let likes, views: Int
 
         enum CodingKeys: String, CodingKey {
             case author, description, image, likes, views
