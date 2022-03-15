@@ -74,7 +74,7 @@ extension CellPresentViewController: UITableViewDataSource, UITableViewDelegate 
                                                     description: article.description,
                                                     image: article.image,
                                                     likes: article.likes,
-                                                    views: article.views)
+                                                    views: article.views + 1)
         cell.setup(with: viewModel)
         return cell
     }
