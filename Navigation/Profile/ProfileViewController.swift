@@ -69,7 +69,6 @@ class ProfileViewController: UIViewController {
 
     private func setupGesture() {
 
-//        choose target to gesture
         self.tapGestureRecogniser.numberOfTapsRequired = 1
         self.tapGestureRecogniser.addTarget(self, action: #selector(self.handleTapGesture(_:)))
         self.view.addGestureRecognizer(self.tapGestureRecogniser)
@@ -77,7 +76,7 @@ class ProfileViewController: UIViewController {
 
     @objc private func handleTapGesture(_ gestureRecognizer: UITapGestureRecognizer) {
         guard self.tapGestureRecogniser === gestureRecognizer else { return }
-//      logarithmic operation Likes + 1
+        //      logarithmic operation Likes + 1
 
     }
 
@@ -157,7 +156,13 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-        self.navigationController?.pushViewController(PhotosViewController(), animated: true)
-        } else { return }
+            self.navigationController?.pushViewController(PhotosViewController(), animated: true)
+        } else {
+            tableView.deselectRow(at: indexPath, animated: true)
+            let posts = dataSource[indexPath.row - 1]
+            let presentViewController = CellPresentViewController(presentPosts: [posts])
+            self.navigationController?.present(presentViewController, animated: true)
+            return
+        }
     }
 }
