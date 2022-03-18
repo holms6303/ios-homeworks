@@ -34,7 +34,7 @@ class GestureViewController: UIViewController {
     }()
 
     lazy var closeButton: UIButton = {
-        let buttonImage = UIImage(systemName: "xmark.circle")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        let buttonImage = UIImage(systemName: "xmark.circle")?.withTintColor(.white, renderingMode: .alwaysOriginal)
         let closeButton = UIButton()
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.setImage(buttonImage, for: .normal)
