@@ -74,8 +74,12 @@
 		1F05D9F027B28E1D00070328 = {
 			isa = PBXGroup;
 			children = (
-				1FB8885727CBAB6D0030B7E0 /* Protocols */,
 				1FB8884D27CA7DAE0030B7E0 /* Core */,
+				1FB8885727CBAB6D0030B7E0 /* Protocols */,
+				1FE322D327E4BBDC00929C9C /* Login */,
+				1FE322D227E4BBB900929C9C /* Posts */,
+				1FE322D127E4BB7200929C9C /* CollectionView */,
+				1FE322D027E4BB4600929C9C /* Gestures */,
 				1F3C209E27B936CD00B11839 /* Profile */,
 				1F05D9FB27B28E1D00070328 /* Navigation */,
 				1F05D9FA27B28E1D00070328 /* Products */,
@@ -114,13 +118,7 @@
 			children = (
 				1F3C209F27B936F700B11839 /* ProfileHeaderView.swift */,
 				1F05DA1627B29D2D00070328 /* ProfileViewController.swift */,
-				1F4B765327DF63A60066B96C /* CellPresentViewController.swift */,
-				1FB8885527CBAA8C0030B7E0 /* PostTableViewCell.swift */,
-				1FB63D6327C6719C0055FEEA /* LogInViewController.swift */,
 				1FB8886027CFC1460030B7E0 /* PhotosTableViewCell.swift */,
-				1FB8886427D4F78B0030B7E0 /* PhotosViewController.swift */,
-				1FB8886627D5063E0030B7E0 /* PhotosCollectionViewCell.swift */,
-				1FB8886A27D64B1A0030B7E0 /* GestureViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -148,6 +146,40 @@
 				1FB8885827CBABA20030B7E0 /* Setupable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1FE322D027E4BB4600929C9C /* Gestures */ = {
+			isa = PBXGroup;
+			children = (
+				1FB8886A27D64B1A0030B7E0 /* GestureViewController.swift */,
+			);
+			path = Gestures;
+			sourceTree = "<group>";
+		};
+		1FE322D127E4BB7200929C9C /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				1FB8886427D4F78B0030B7E0 /* PhotosViewController.swift */,
+				1FB8886627D5063E0030B7E0 /* PhotosCollectionViewCell.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		1FE322D227E4BBB900929C9C /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				1FB8885527CBAA8C0030B7E0 /* PostTableViewCell.swift */,
+				1F4B765327DF63A60066B96C /* CellPresentViewController.swift */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		1FE322D327E4BBDC00929C9C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1FB63D6327C6719C0055FEEA /* LogInViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
