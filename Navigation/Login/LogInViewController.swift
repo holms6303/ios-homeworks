@@ -118,7 +118,7 @@ class LogInViewController: UIViewController {
                     self.logInButtonTopConstraint?.constant = 46}
                 self.view.layoutIfNeeded()
             } completion: { _ in
-                let alertController = UIAlertController(title: "Attention, login or password is incorrect.", message: "Please enter correct information.", preferredStyle: .actionSheet)
+                let alertController = UIAlertController(title: "Attention, login or password is incorrect.", message: "Default login - qwerty, passwod - qw", preferredStyle: .actionSheet)
                 alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                 self.present(alertController, animated: true)
             }
@@ -129,7 +129,7 @@ class LogInViewController: UIViewController {
         let wrongPasswordLabel = UILabel()
         wrongPasswordLabel.translatesAutoresizingMaskIntoConstraints = false
         wrongPasswordLabel.textColor = .red
-        wrongPasswordLabel.text = "Your password is too short. Need 8 symbols or more"
+        wrongPasswordLabel.text = "Your password is too short. Need 2 symbols or more"
         wrongPasswordLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         wrongPasswordLabel.isHidden = true
         return wrongPasswordLabel

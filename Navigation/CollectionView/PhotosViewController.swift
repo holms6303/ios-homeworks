@@ -30,7 +30,7 @@ class PhotosViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
-    
+
     var alpha = GestureViewController().alphaView
     var closeButton = GestureViewController().closeButton
     
@@ -61,13 +61,15 @@ class PhotosViewController: UIViewController {
     private var alphaTrailingConstraint: NSLayoutConstraint?
     
     private var isExpanded = false
+
+    private var defaultCellCenter: CGPoint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
         self.title = "Photo Gallery"
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -159,7 +161,8 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
         let cell = collectionView.cellForItem(at: indexPath)
         let cellSize = (UIScreen.main.bounds.width / 3) - 10
         let calculateScale = UIScreen.main.bounds.width / cellSize
-        
+        //self.defaultCellCenter = cell?.center
+        print("default cell center is \(String(describing: self.defaultCellCenter))")
         let expandTransform = CGAffineTransform(scaleX: calculateScale, y: calculateScale)
         
         self.isExpanded.toggle()
@@ -171,7 +174,8 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
         }
         UIView.animate(withDuration: 0.5) {
             cell?.transform = self.isExpanded ? expandTransform : .identity
-            
+           // cell?.center = self.isExpanded ? self.alpha.center : self.defaultCellCenter!
+
             self.alpha.alpha = self.isExpanded ? 0.5 : 0
             self.view.layoutIfNeeded()
         }

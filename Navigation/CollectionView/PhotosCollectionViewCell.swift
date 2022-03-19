@@ -20,12 +20,12 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         self.contentView.addSubview(self.photoGalleryImages)
 
-        let labelCenterYAnchor = self.photoGalleryImages.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
-        let labelCenterXAnchor = self.photoGalleryImages.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor)
+        let imageCenterYAnchor = self.photoGalleryImages.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
+        let imageCenterXAnchor = self.photoGalleryImages.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor)
         let heightAnchor = self.photoGalleryImages.heightAnchor.constraint(equalTo: self.contentView.heightAnchor)
         let widthAnchor = self.photoGalleryImages.widthAnchor.constraint(equalTo: self.contentView.widthAnchor)
 
-        NSLayoutConstraint.activate([labelCenterYAnchor, labelCenterXAnchor, heightAnchor, widthAnchor])
+        NSLayoutConstraint.activate([imageCenterYAnchor, imageCenterXAnchor, heightAnchor, widthAnchor])
     }
     
     required init?(coder: NSCoder) {

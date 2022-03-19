@@ -13,8 +13,8 @@ class PostTableViewCell: UITableViewCell {
         let author: String
         let description: String
         let image: String
-        let likes: Int
-        let views: Int
+        var likes: Int
+        var views: Int
     }
 
     private lazy var backView: UIView = {
