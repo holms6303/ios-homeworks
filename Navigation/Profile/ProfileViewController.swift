@@ -53,8 +53,9 @@ class ProfileViewController: UIViewController {
     private func setupView() {
 
         self.view.addSubview(self.tableView)
+        self.view.backgroundColor = .systemGray6
 
-        let topConstraint = self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor)
+        let topConstraint = self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
         let leadingConstraint = self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         let trailingConstraint = self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         let bottomConstraint = self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
