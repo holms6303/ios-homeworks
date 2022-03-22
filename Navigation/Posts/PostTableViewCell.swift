@@ -82,8 +82,20 @@ class PostTableViewCell: UITableViewCell {
         likesLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         likesLabel.textColor = .black
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
+        likesLabel.isUserInteractionEnabled = true
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(likesLabelClick))
+        likesLabel.addGestureRecognizer(tapGesture)
         return likesLabel
     }()
+
+    @objc private func likesLabelClick(){
+
+        let string = likesLabel.text!
+        let numbers = string.compactMap{Int(String($0))}
+        let likesCount = numbers.reduce(0, { $0 * 10 + $1 }) + 1
+        likesLabel.text = "Likes: \(likesCount)"
+    }
 
     private lazy var viewsLabel: UILabel = {
         let viewsLabel = UILabel()
