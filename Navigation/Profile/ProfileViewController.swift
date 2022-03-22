@@ -47,6 +47,7 @@ class ProfileViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
 
     }
+
     func setStatusBarColor() {
         if #available(iOS 13.0, *) {
             let app = UIApplication.shared
@@ -61,10 +62,7 @@ class ProfileViewController: UIViewController {
             statusbarView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
             statusbarView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
             statusbarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-
         }
-
-        
     }
 
     private func setupGesture() {
@@ -88,8 +86,9 @@ class ProfileViewController: UIViewController {
     private func setupView() {
 
         self.view.addSubview(self.tableView)
+        self.view.backgroundColor = .systemGray6
 
-        let topConstraint = self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor)
+        let topConstraint = self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
         let leadingConstraint = self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         let trailingConstraint = self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         let bottomConstraint = self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)

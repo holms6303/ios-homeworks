@@ -143,7 +143,14 @@ class LogInViewController: UIViewController {
         self.configureSubviews()
         self.setupConstraints()
         self.hidingKeyboard()
+        self.showAndHidingGKeyboard()
 
+    }
+
+    func showAndHidingGKeyboard() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
 
     private func setupErrorStackView(){
@@ -195,17 +202,17 @@ class LogInViewController: UIViewController {
         let contentViewBottomConstraint = self.contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor)
         let contentViewWidthConstraint = self.contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor)
 
-        let logoImageTopConstraint = self.logoImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120.0)
-        let logoImageXCenterConstraint = self.logoImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+        let logoImageTopConstraint = self.logoImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 120.0)
+        let logoImageBottomConstraint = self.logoImage.bottomAnchor.constraint(equalTo: self.stackView.topAnchor, constant: -120.0)
+        let logoImageXCenterConstraint = self.logoImage.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor)
         let logoImageHeightConstraint = self.logoImage.heightAnchor.constraint(equalToConstant: 100.0)
-        let logoImageWidthConstraint = self.logoImage.widthAnchor.constraint(equalTo: logoImage.heightAnchor, multiplier: 1.0)
+        let logoImageWidthConstraint = self.logoImage.widthAnchor.constraint(equalTo: self.logoImage.heightAnchor, multiplier: 1.0)
 
         let stackViewCenterXConstraint = self.stackView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor)
         let stackViewRightConstraint = self.stackView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -16.0)
         let stackViewCenterYConstraint = self.stackView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
         let stackViewLeftConstraint = self.stackView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 16.0)
         let stackViewHeightConstraint = self.stackView.heightAnchor.constraint(equalToConstant: 100.0)
-        let stackViewTopConstraint = self.stackView.topAnchor.constraint(equalTo: self.logoImage.bottomAnchor, constant: 120.0)
 
         self.logInButtonTopConstraint = self.logInButton.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 16.0)
         let logInButtonHeightConstraint = self.logInButton.heightAnchor.constraint(equalToConstant: 50.0)
@@ -219,31 +226,31 @@ class LogInViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             scrollViewTopConstraint,
-            scrollViewRightConstraint,
-            scrollViewBottomConstraint,
-            scrollViewLeftConstraint,
+             scrollViewRightConstraint,
+             scrollViewBottomConstraint,
+             scrollViewLeftConstraint,
 
-            contentViewTopConstraint,
-            contentViewCenterXConstraint,
-            contentViewBottomConstraint,
-            contentViewWidthConstraint,
-            
-            logoImageTopConstraint,
-            logoImageXCenterConstraint,
-            logoImageHeightConstraint,
-            logoImageWidthConstraint,
+             contentViewTopConstraint,
+             contentViewCenterXConstraint,
+             contentViewBottomConstraint,
+             contentViewWidthConstraint,
 
-            stackViewCenterXConstraint,
-            stackViewRightConstraint,
-            stackViewCenterYConstraint,
-            stackViewLeftConstraint,
-            stackViewHeightConstraint,
-            stackViewTopConstraint,
+             logoImageTopConstraint,
+             logoImageBottomConstraint,
+             logoImageXCenterConstraint,
+             logoImageHeightConstraint,
+             logoImageWidthConstraint,
 
-            self.logInButtonTopConstraint,
-            logInButtonHeightConstraint,
-            logInButtonLeftConstraint,
-            logInButtonRightConstraint,
+             stackViewCenterXConstraint,
+             stackViewRightConstraint,
+             stackViewCenterYConstraint,
+             stackViewLeftConstraint,
+             stackViewHeightConstraint,
+
+             logInButtonTopConstraint,
+             logInButtonHeightConstraint,
+             logInButtonLeftConstraint,
+             logInButtonRightConstraint,
 
             wrongPasswordLabelTopConstraint,
             wrongPasswordLabelLeftConstraint,
@@ -253,6 +260,15 @@ class LogInViewController: UIViewController {
 
     }
 
+    @objc func adjustForKeyboard (notification: Notification){
+        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            
+            let contentOffset: CGPoint = notification.name == UIResponder.keyboardWillHideNotification ? .zero : CGPoint(x: 0, y: keyboardHeight / 4)
+            self.scrollView.contentOffset = contentOffset
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
