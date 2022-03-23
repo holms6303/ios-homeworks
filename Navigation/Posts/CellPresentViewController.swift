@@ -75,9 +75,4 @@ extension CellPresentViewController: UITableViewDataSource, UITableViewDelegate 
         cell.setup(with: viewModel)
         return cell
     }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        print(presentPosts[indexPath.row])
-    }
 }

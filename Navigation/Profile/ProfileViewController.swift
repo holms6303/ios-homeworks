@@ -87,7 +87,6 @@ class ProfileViewController: UIViewController {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
                 let news = try self.jsonDecoder.decode(News.self, from: data)
-                print("json data: \(news)")
                 completion(news.articles)
             } catch let error {
                 print("parse error: \(error.localizedDescription)")
