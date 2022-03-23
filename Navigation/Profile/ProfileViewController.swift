@@ -33,7 +33,6 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
-        self.setupGesture()
         self.hidingKeyboard()
         self.fetchArticles { [weak self] articles in
             self?.dataSource = articles
@@ -45,10 +44,10 @@ class ProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         setStatusBarColor()
         navigationController?.setNavigationBarHidden(true, animated: animated)
-
     }
 
     func setStatusBarColor() {
+
         if #available(iOS 13.0, *) {
             let app = UIApplication.shared
             let statusBarHeight: CGFloat = app.statusBarFrame.size.height
@@ -63,19 +62,6 @@ class ProfileViewController: UIViewController {
             statusbarView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
             statusbarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         }
-    }
-
-    private func setupGesture() {
-
-        self.tapGestureRecogniser.numberOfTapsRequired = 1
-        self.tapGestureRecogniser.addTarget(self, action: #selector(self.handleTapGesture(_:)))
-        self.view.addGestureRecognizer(self.tapGestureRecogniser)
-    }
-
-    @objc private func handleTapGesture(_ gestureRecognizer: UITapGestureRecognizer) {
-        guard self.tapGestureRecogniser === gestureRecognizer else { return }
-        //      logarithmic operation Likes + 1
-
     }
 
     func hidingKeyboard(){
@@ -93,9 +79,7 @@ class ProfileViewController: UIViewController {
         let trailingConstraint = self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         let bottomConstraint = self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
 
-        NSLayoutConstraint.activate([
-            topConstraint, leadingConstraint, trailingConstraint, bottomConstraint
-        ])
+        NSLayoutConstraint.activate([topConstraint, leadingConstraint, trailingConstraint, bottomConstraint])
     }
 
     private func fetchArticles(completion: @escaping ([News.Article]) -> Void) {

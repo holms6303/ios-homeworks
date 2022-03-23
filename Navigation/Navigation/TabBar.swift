@@ -14,7 +14,6 @@ class TabBar: UITabBarController {
         view.backgroundColor = .systemBackground
         setupTabBar()
         setupViewControllers()
-        
     }
 
     func setupTabBar(){
@@ -38,8 +37,6 @@ class TabBar: UITabBarController {
         navController.tabBarItem.image = image
         navController.navigationBar.prefersLargeTitles = false
         rootViewController.navigationItem.title = title
-
         return navController
-        
     }
 }

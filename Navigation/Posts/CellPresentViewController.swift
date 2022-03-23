@@ -18,7 +18,7 @@ class CellPresentViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-
+    
     private let presentPosts: [News.Article]
 
     init(presentPosts: [News.Article]) {
@@ -49,9 +49,7 @@ class CellPresentViewController: UIViewController {
         let trailingConstraint = self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         let bottomConstraint = self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
 
-        NSLayoutConstraint.activate([
-            topConstraint, leadingConstraint, trailingConstraint, bottomConstraint
-        ])
+        NSLayoutConstraint.activate([topConstraint, leadingConstraint, trailingConstraint, bottomConstraint])
     }
 }
 
@@ -63,7 +61,6 @@ extension CellPresentViewController: UITableViewDataSource, UITableViewDelegate 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? PostTableViewCell else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
             return cell

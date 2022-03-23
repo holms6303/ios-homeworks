@@ -21,9 +21,7 @@ class ProfileHeaderView: UIView {
     }
     
     lazy var avatarImageView: UIImageView = {
-        
         let image = UIImage(named: "profileImage.jpg")
-        
         let avatarImageView = UIImageView()
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         avatarImageView.clipsToBounds = true
@@ -32,38 +30,31 @@ class ProfileHeaderView: UIView {
         avatarImageView.layer.borderWidth = 3.0
         avatarImageView.layer.borderColor = UIColor.white.cgColor
         avatarImageView.image = image
-        
-        
         return avatarImageView
     }()
     
     lazy var fullNameLabel: UILabel = {
-        
         let fullNameLabel = UILabel()
         fullNameLabel.translatesAutoresizingMaskIntoConstraints = false
         fullNameLabel.text = "Hipster Cat"
         fullNameLabel.textAlignment = .left
         fullNameLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         fullNameLabel.textColor = .black
-        
         return fullNameLabel
     }()
     
     //    был использован textField для более удобной работы с логикой смены статуса
     lazy var statusLabel: UITextField = {
-        
         let statusLabel = UITextField()
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
         statusLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         statusLabel.textAlignment = .left
         statusLabel.placeholder = "Waiting for something..."
         statusLabel.isUserInteractionEnabled = false
-        
         return statusLabel
     }()
     
     lazy var statusTextField: UITextField = {
-        
         let statusTextField = UITextField()
         statusTextField.translatesAutoresizingMaskIntoConstraints = false
         statusTextField.isHidden = true
@@ -78,19 +69,16 @@ class ProfileHeaderView: UIView {
         statusTextField.layer.cornerRadius = 12.0
         
         statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
-        
-        
+
         return statusTextField
     }()
     
     @objc func statusTextChanged(_ textField: UITextField) {
         
         statusText = statusTextField.text!
-        
     }
     
     lazy var setStatusButton: UIButton = {
-        
         let setStatusButton = UIButton()
         setStatusButton.translatesAutoresizingMaskIntoConstraints = false
         setStatusButton.backgroundColor = .systemBlue
@@ -139,32 +127,31 @@ class ProfileHeaderView: UIView {
         let setStatusButtonHeightConstraint = self.setStatusButton.heightAnchor.constraint(equalToConstant: 50.0)
         
         NSLayoutConstraint.activate([
-
             avatarImageViewLeftConstraint,
-             avatarImageViewTopConstraint,
-             avatarImageViewHeightConstraint,
-             avatarImageViewWidthConstraint,
+            avatarImageViewTopConstraint,
+            avatarImageViewHeightConstraint,
+            avatarImageViewWidthConstraint,
 
-             fullNameLabelLeftConstraint,
-             fullNameLabelTopConstraint,
-             fullNameLabelRightConstraint,
-             fullNameLabelHeightConstraint,
+            fullNameLabelLeftConstraint,
+            fullNameLabelTopConstraint,
+            fullNameLabelRightConstraint,
+            fullNameLabelHeightConstraint,
 
-             statusLabelLeftConstraint,
-             statusLabelRightConstraint,
-             statusLabelBottomConstraint,
-             statusLabelHeightConstraint,
+            statusLabelLeftConstraint,
+            statusLabelRightConstraint,
+            statusLabelBottomConstraint,
+            statusLabelHeightConstraint,
 
-             statusTextFieldLeftConstraint,
-             statusTextFieldRightConstraint,
-             statusTextFieldTopConstraint,
-             statusTextFieldHeightConstraint,
+            statusTextFieldLeftConstraint,
+            statusTextFieldRightConstraint,
+            statusTextFieldTopConstraint,
+            statusTextFieldHeightConstraint,
 
-             setStatusButtonLeftConstraint,
-             setStatusButtonTopConstraint,
-             setStatusButtonRightConstraint,
-             setStatusButtonHeightConstraint
-         ].compactMap({ $0 }))
+            setStatusButtonLeftConstraint,
+            setStatusButtonTopConstraint,
+            setStatusButtonRightConstraint,
+            setStatusButtonHeightConstraint
+        ].compactMap({ $0 }))
     }
     
     private func setupView() {

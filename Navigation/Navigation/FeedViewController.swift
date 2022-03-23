@@ -13,10 +13,8 @@ class FeedViewController: UIViewController {
         var title: String
     }
     var firstPost = Posts(title: "About myself")
-    
-    
+
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         let feedControllerStack = UIStackView()
@@ -32,8 +30,7 @@ class FeedViewController: UIViewController {
         firstButton.backgroundColor = .systemGray
         firstButton.setTitle("First Button", for: .normal)
         firstButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        
-        
+
         let secondButton = UIButton()
         secondButton.translatesAutoresizingMaskIntoConstraints = false
         secondButton.backgroundColor = .systemRed
@@ -48,8 +45,8 @@ class FeedViewController: UIViewController {
             feedControllerStack.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
+
     @objc func didTapButton(sender: UIButton!) {
-        
         self.navigationController?.pushViewController(PostViewController(), animated: true)
     }
 }

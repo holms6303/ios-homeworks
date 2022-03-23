@@ -25,7 +25,6 @@ class InfoViewController: UIViewController, UIAlertViewDelegate {
         alertButton.layer.cornerRadius = 15
         alertButton.setTitle("Show Alert", for: .normal)
         alertButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-
     }
 
     @objc func didTapButton(_ sender: UIButton!) {

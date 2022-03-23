@@ -22,9 +22,12 @@ class PostTableViewCell: UITableViewCell {
         view.clipsToBounds = true
         view.layer.cornerRadius = 0
         view.layer.maskedCorners = [
-            .layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner
+            .layerMinXMinYCorner,
+            .layerMaxXMinYCorner,
+            .layerMinXMaxYCorner,
+            .layerMaxXMaxYCorner
         ]
-        //cell background
+        //      cell background
         view.backgroundColor = UIColor(hexString: "ffffff")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -90,7 +93,6 @@ class PostTableViewCell: UITableViewCell {
     }()
 
     @objc private func likesLabelClick(){
-
         let string = likesLabel.text!
         let numbers = string.compactMap{Int(String($0))}
         let likesCount = numbers.reduce(0, { $0 * 10 + $1 }) + 1
@@ -103,7 +105,6 @@ class PostTableViewCell: UITableViewCell {
         viewsLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         viewsLabel.textColor = .black
         viewsLabel.translatesAutoresizingMaskIntoConstraints = false
-
         return viewsLabel
     }()
 
@@ -126,7 +127,7 @@ class PostTableViewCell: UITableViewCell {
     }
 
     private func setupView() {
-        //view background
+        //      view background
         self.contentView.backgroundColor = .white
 
         self.contentView.addSubview(self.backView)
@@ -151,9 +152,7 @@ class PostTableViewCell: UITableViewCell {
         let trailingConstraint = self.backView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16)
         let bottomConstraint = self.backView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
 
-        return [
-            topConstraint, leadingConstraint, trailingConstraint, bottomConstraint
-        ]
+        return [topConstraint, leadingConstraint, trailingConstraint, bottomConstraint]
     }
 
     private func stackViewConstraints() -> [NSLayoutConstraint] {
@@ -162,9 +161,7 @@ class PostTableViewCell: UITableViewCell {
         let trailingConstraint = self.stackView.trailingAnchor.constraint(equalTo: self.backView.trailingAnchor)
         let bottomConstraint = self.stackView.bottomAnchor.constraint(equalTo: self.backView.bottomAnchor, constant: -10)
 
-        return [
-            topConstraint, leadingConstraint, trailingConstraint, bottomConstraint
-        ]
+        return [topConstraint, leadingConstraint, trailingConstraint, bottomConstraint]
     }
 
     private func imageViewConstraints() -> [NSLayoutConstraint] {
@@ -172,9 +169,7 @@ class PostTableViewCell: UITableViewCell {
         let imageViewHeightAnchor = self.newsImageView.heightAnchor.constraint(equalTo: self.newsImageView.widthAnchor, multiplier: 1)
         let imageViewLeadingAnchor = self.newsImageView.leadingAnchor.constraint(equalTo: self.backView.leadingAnchor)
         let imageViewTrailingAnchor = self.newsImageView.trailingAnchor.constraint(equalTo: self.backView.trailingAnchor)
-        return [
-            imageViewHeightAnchor, imageViewLeadingAnchor, imageViewTrailingAnchor
-        ]
+        return [imageViewHeightAnchor, imageViewLeadingAnchor, imageViewTrailingAnchor]
     }
 }
 

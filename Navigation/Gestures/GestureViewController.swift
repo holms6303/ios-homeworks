@@ -10,9 +10,7 @@ import UIKit
 class GestureViewController: UIViewController {
 
     lazy var gestureAvatarImageView: UIImageView = {
-
         let image = UIImage(named: "profileImage.jpg")
-
         let avatarImageView = UIImageView()
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         avatarImageView.clipsToBounds = true
@@ -64,7 +62,9 @@ class GestureViewController: UIViewController {
     }
 
     private func setupView() {
+
         self.view.backgroundColor = .systemGray6
+
         self.view.addSubview(self.gestureAvatarImageView)
         self.view.addSubview(self.alphaView)
         self.view.addSubview(self.closeButton)
@@ -86,8 +86,6 @@ class GestureViewController: UIViewController {
         let closeButtonHeightConstraint = self.closeButton.heightAnchor.constraint(equalToConstant: 60.0)
         let closeButtonWidthConstraint = self.closeButton.widthAnchor.constraint(equalToConstant: 60.0)
 
-
-
         NSLayoutConstraint.activate([
             self.avatarViewTopConstraint,
             self.avatarViewLeadingConstraint,
@@ -104,7 +102,6 @@ class GestureViewController: UIViewController {
             closeButtonHeightConstraint,
             closeButtonWidthConstraint
         ].compactMap({ $0 }))
-
     }
 
     private func setupGesture() {
@@ -158,7 +155,6 @@ class GestureViewController: UIViewController {
                 self.avatarViewWidthConstraint?.constant = 125
             }
             self.view.layoutIfNeeded()
-        } completion: { _ in
         }
     }
 
