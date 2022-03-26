@@ -62,6 +62,8 @@ class PhotosViewController: UIViewController {
     
     private var isExpanded = false
 
+    private var backSpaceAnimationCompletion: ((Bool) -> (Void))?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
@@ -112,16 +114,13 @@ class PhotosViewController: UIViewController {
         let itemWidth = floor(neededWidth / Constants.itemCount)
         return CGSize(width: itemWidth, height: itemWidth)
     }
+
+    private func checkAnimationCompletionFinished(using completionHandler: (Bool) -> Void) {
+        completionHandler(true)
+    }
     
     @objc func didTapCloseButton() {
-        UIView.animate(withDuration: 0.5) {
-            self.closeButton.isHidden = true
-            self.alpha.alpha = 0
-            if self.isExpanded {
-                // поменять размеры ячейки
-            }
-            self.view.layoutIfNeeded()
-        }
+        checkAnimationCompletionFinished(using: self.backSpaceAnimationCompletion!)
     }
 }
 
@@ -168,8 +167,20 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
         if self.isExpanded {
             self.alpha.isHidden = false
             self.closeButton.isHidden = false
-            
         }
+
+        let collectionItemBackspaceAnimation: (Bool) -> Void = { doneWorking in
+            if doneWorking {
+                UIView.animate(withDuration: 0.5) {
+                    self.closeButton.isHidden = true
+                    self.alpha.alpha = 0
+                    cell?.transform = .identity
+                    cell?.center = cellCenterPoint!
+                    self.view.layoutIfNeeded()
+                }
+            }
+        }
+        backSpaceAnimationCompletion = collectionItemBackspaceAnimation
 
         UIView.animate(withDuration: 0.5) {
             cell?.transform = self.isExpanded ? expandTransform : .identity
