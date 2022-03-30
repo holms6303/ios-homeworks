@@ -12,7 +12,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     lazy var photoGalleryImages: UIImageView = {
         let photoGalleryImages = UIImageView()
         photoGalleryImages.clipsToBounds = true
-        photoGalleryImages.translatesAutoresizingMaskIntoConstraints = false
+        photoGalleryImages.toAutoLayout()
         return photoGalleryImages
     }()
 
@@ -20,12 +20,13 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         self.contentView.addSubview(self.photoGalleryImages)
 
-        let imageCenterYAnchor = self.photoGalleryImages.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
-        let imageCenterXAnchor = self.photoGalleryImages.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor)
-        let heightAnchor = self.photoGalleryImages.heightAnchor.constraint(equalTo: self.contentView.heightAnchor)
-        let widthAnchor = self.photoGalleryImages.widthAnchor.constraint(equalTo: self.contentView.widthAnchor)
-
-        NSLayoutConstraint.activate([imageCenterYAnchor, imageCenterXAnchor, heightAnchor, widthAnchor])
+        NSLayoutConstraint.activate([
+            
+            photoGalleryImages.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
+            photoGalleryImages.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            photoGalleryImages.heightAnchor.constraint(equalTo: self.contentView.heightAnchor),
+            photoGalleryImages.widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
+        ])
     }
     
     required init?(coder: NSCoder) {

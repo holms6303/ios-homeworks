@@ -15,8 +15,9 @@ class InfoViewController: UIViewController, UIAlertViewDelegate {
         view.backgroundColor = .systemGreen
 
         let alertButton = UIButton()
-        alertButton.translatesAutoresizingMaskIntoConstraints = false
+        alertButton.toAutoLayout()
         self.view.addSubview(alertButton)
+        
         alertButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
         alertButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
         alertButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5).isActive = true

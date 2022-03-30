@@ -19,7 +19,7 @@ class ProfileViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "ArticleCell")
         tableView.backgroundColor = .systemBackground
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.toAutoLayout()
         return tableView
     }()
 
@@ -48,7 +48,6 @@ class ProfileViewController: UIViewController {
 
     func setStatusBarColor() {
 
-        if #available(iOS 13.0, *) {
             let app = UIApplication.shared
             let statusBarHeight: CGFloat = app.statusBarFrame.size.height
 
@@ -61,7 +60,6 @@ class ProfileViewController: UIViewController {
             statusbarView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
             statusbarView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
             statusbarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        }
     }
 
     func hidingKeyboard(){
@@ -74,12 +72,13 @@ class ProfileViewController: UIViewController {
         self.view.addSubview(self.tableView)
         self.view.backgroundColor = .systemGray6
 
-        let topConstraint = self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
-        let leadingConstraint = self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
-        let trailingConstraint = self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-        let bottomConstraint = self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-
-        NSLayoutConstraint.activate([topConstraint, leadingConstraint, trailingConstraint, bottomConstraint])
+        NSLayoutConstraint.activate([
+            
+            tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
     }
 
     private func fetchArticles(completion: @escaping ([News.Article]) -> Void) {

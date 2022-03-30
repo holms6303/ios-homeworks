@@ -12,7 +12,7 @@ class GestureViewController: UIViewController {
     lazy var gestureAvatarImageView: UIImageView = {
         let image = UIImage(named: "profileImage.jpg")
         let avatarImageView = UIImageView()
-        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
+        avatarImageView.toAutoLayout()
         avatarImageView.clipsToBounds = true
         avatarImageView.layer.cornerRadius = 62.5
         avatarImageView.layer.borderWidth = 3.0
@@ -23,7 +23,7 @@ class GestureViewController: UIViewController {
 
     lazy var alphaView: UIImageView = {
         let alphaView = UIImageView()
-        alphaView.translatesAutoresizingMaskIntoConstraints = false
+        alphaView.toAutoLayout()
         alphaView.clipsToBounds = true
         alphaView.alpha = 0
         alphaView.isHidden = true
@@ -81,12 +81,8 @@ class GestureViewController: UIViewController {
         self.alphaViewLeadingConstraint = self.alphaView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         self.alphaViewTrailingConstraint = self.alphaView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
 
-        let closeButtonTopConstraint = self.closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10.0)
-        let closeButtonTrailingConstraint = self.closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10.0)
-        let closeButtonHeightConstraint = self.closeButton.heightAnchor.constraint(equalToConstant: 60.0)
-        let closeButtonWidthConstraint = self.closeButton.widthAnchor.constraint(equalToConstant: 60.0)
-
         NSLayoutConstraint.activate([
+            
             self.avatarViewTopConstraint,
             self.avatarViewLeadingConstraint,
             self.avatarViewHeightConstraint,
@@ -97,10 +93,10 @@ class GestureViewController: UIViewController {
             self.alphaViewLeadingConstraint,
             self.alphaViewTrailingConstraint,
 
-            closeButtonTopConstraint,
-            closeButtonTrailingConstraint,
-            closeButtonHeightConstraint,
-            closeButtonWidthConstraint
+            closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10.0),
+            closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10.0),
+            closeButton.heightAnchor.constraint(equalToConstant: 60.0),
+            closeButton.widthAnchor.constraint(equalToConstant: 60.0)
         ].compactMap({ $0 }))
     }
 

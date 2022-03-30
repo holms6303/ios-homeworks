@@ -18,7 +18,7 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         
         let feedControllerStack = UIStackView()
-        feedControllerStack.translatesAutoresizingMaskIntoConstraints = false
+        feedControllerStack.toAutoLayout()
         feedControllerStack.axis = .vertical
         feedControllerStack.spacing = 10.0
         feedControllerStack.distribution = .fillEqually
@@ -26,13 +26,13 @@ class FeedViewController: UIViewController {
         self.view.addSubview(feedControllerStack)
         
         let firstButton = UIButton()
-        firstButton.translatesAutoresizingMaskIntoConstraints = false
+        firstButton.toAutoLayout()
         firstButton.backgroundColor = .systemGray
         firstButton.setTitle("First Button", for: .normal)
         firstButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
 
         let secondButton = UIButton()
-        secondButton.translatesAutoresizingMaskIntoConstraints = false
+        secondButton.toAutoLayout()
         secondButton.backgroundColor = .systemRed
         secondButton.setTitle("Second Button", for: .normal)
         secondButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
@@ -41,6 +41,7 @@ class FeedViewController: UIViewController {
         feedControllerStack.addArrangedSubview(secondButton)
         
         NSLayoutConstraint.activate([
+            
             feedControllerStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             feedControllerStack.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])

@@ -33,28 +33,7 @@ class PhotosViewController: UIViewController {
 
     var alpha = GestureViewController().alphaView
     var closeButton = GestureViewController().closeButton
-    
-    private var collectionDataSource : [CollectionViewModel] = [CollectionViewModel(image: "61976139.jpeg"),
-                                                                CollectionViewModel(image: "arhiv-uzhasov.jpeg"),
-                                                                CollectionViewModel(image: "cover.jpeg"),
-                                                                CollectionViewModel(image: "dveri-shkafchiki.jpeg"),
-                                                                CollectionViewModel(image: "futuristic car UI.jpeg"),
-                                                                CollectionViewModel(image: "gory-les.jpeg"),
-                                                                CollectionViewModel(image: "graviti-folz.jpeg"),
-                                                                CollectionViewModel(image: "horizon-zero-dawn.jpeg"),
-                                                                CollectionViewModel(image: "kak-vyzhit.jpeg"),
-                                                                CollectionViewModel(image: "kluchi-lokkov.jpeg"),
-                                                                CollectionViewModel(image: "klyki.jpeg"),
-                                                                CollectionViewModel(image: "komicheskaya-tragediya.jpeg"),
-                                                                CollectionViewModel(image: "legenda-o-volkah.jpeg"),
-                                                                CollectionViewModel(image: "letchiki-geroi.jpeg"),
-                                                                CollectionViewModel(image: "made-in-abyss.jpeg"),
-                                                                CollectionViewModel(image: "planeta-kratery.jpeg"),
-                                                                CollectionViewModel(image: "prizrak-strany-rozhdestva.jpeg"),
-                                                                CollectionViewModel(image: "ragnarek.jpeg"),
-                                                                CollectionViewModel(image: "skaly-ozero.jpeg"),
-                                                                CollectionViewModel(image: "tekstura-trava.jpeg")]
-    
+
     private var alphaTopConstraint: NSLayoutConstraint?
     private var alphaBottomConstraint: NSLayoutConstraint?
     private var alphaLeadingConstraint: NSLayoutConstraint?
@@ -79,33 +58,26 @@ class PhotosViewController: UIViewController {
         self.view.addSubview(self.collectionView)
         self.collectionView.addSubview(self.alpha)
         self.collectionView.addSubview(self.closeButton)
-        
-        let topConstraint = self.collectionView.topAnchor.constraint(equalTo: self.view.topAnchor)
-        let bottomConstraint = self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        let leadingConstraint = self.collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
-        let trailingConstraint = self.collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-        
+
         self.alphaTopConstraint = self.alpha.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
         self.alphaBottomConstraint = self.alpha.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         self.alphaLeadingConstraint = self.alpha.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         self.alphaTrailingConstraint = self.alpha.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-        
-        let closeButtonTopConstraint = self.closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
-        let closeButtonTrailingConstraint = self.closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10.0)
-        
+
         NSLayoutConstraint.activate([
-            topConstraint,
-            bottomConstraint,
-            leadingConstraint,
-            trailingConstraint,
+
+            collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             
             self.alphaTopConstraint,
             self.alphaBottomConstraint,
             self.alphaLeadingConstraint,
             self.alphaTrailingConstraint,
             
-            closeButtonTopConstraint,
-            closeButtonTrailingConstraint,
+            closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10.0)
         ].compactMap({ $0 }))
     }
     
@@ -127,7 +99,7 @@ class PhotosViewController: UIViewController {
 extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.collectionDataSource.count
+        return collectionDataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -15,7 +15,7 @@ class CellPresentViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "ArticleCell")
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.toAutoLayout()
         return tableView
     }()
     
@@ -44,12 +44,13 @@ class CellPresentViewController: UIViewController {
 
         self.view.addSubview(self.tableView)
 
-        let topConstraint = self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor)
-        let leadingConstraint = self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
-        let trailingConstraint = self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-        let bottomConstraint = self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-
-        NSLayoutConstraint.activate([topConstraint, leadingConstraint, trailingConstraint, bottomConstraint])
+        NSLayoutConstraint.activate([
+            
+            tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
     }
 }
 
