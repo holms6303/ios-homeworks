@@ -164,23 +164,34 @@ class ProfileHeaderView: UIView {
 
         self.isExpanded.toggle()
 
-        UIView.animate(withDuration: 0.5) {
-            self.statusLabelBottomConstraint?.constant = self.isExpanded ? -74 : -34
-            self.setStatusButtonTopConstraint?.constant = self.isExpanded ? 56 : 16
-            self.statusTextField.isHidden = self.isExpanded ? false : true
-            self.layoutIfNeeded()
-        } completion: { _ in
-            
+        switch setStatusButtonTopConstraint?.constant {
+        case 16:
+            UIView.animate(withDuration: 0.5) {
+                self.statusLabelBottomConstraint?.constant = -74
+                self.setStatusButtonTopConstraint?.constant = 56
+                self.statusTextField.isHidden = false
+                self.layoutIfNeeded()
+            }
+        case 56:
             if self.statusTextField.hasText {
                 self.statusLabel.text = self.statusText
                 self.statusTextField.text = ""
                 self.statusTextField.layer.borderColor = UIColor.black.cgColor
                 self.statusTextField.layer.borderWidth = 1.0
+                self.statusTextField.isHidden = true
                 self.endEditing(true)
+
+                UIView.animate(withDuration: 0.5) {
+                    self.statusLabelBottomConstraint?.constant = -34
+                    self.setStatusButtonTopConstraint?.constant = 16
+                    self.layoutIfNeeded()
+                }
             } else {
                 self.statusTextField.layer.borderColor = UIColor.red.cgColor
                 self.statusTextField.layer.borderWidth = 1.5
             }
+        default:
+            print("Constants error")
         }
     }
 }
