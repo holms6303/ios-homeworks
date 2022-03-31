@@ -29,9 +29,28 @@ class ProfileHeaderView: UIView {
         avatarImageView.layer.cornerRadius = 62.5
         avatarImageView.layer.borderWidth = 3.0
         avatarImageView.layer.borderColor = UIColor.white.cgColor
+        avatarImageView.isUserInteractionEnabled = true
         avatarImageView.image = image
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentToFullScreen))
+        avatarImageView.addGestureRecognizer(tapGesture)
+
         return avatarImageView
     }()
+
+    @objc func presentToFullScreen() {
+        guard let toVC = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first?.rootViewController else { return }
+        let customViewController = GestureViewController()
+        customViewController.modalPresentationStyle = .overFullScreen
+        customViewController.modalTransitionStyle = .crossDissolve
+
+        let transition: CATransition = CATransition()
+        transition.duration = 0.3
+        transition.type = CATransitionType.fade
+        self.window?.layer.add(transition, forKey: nil)
+
+        toVC.present(customViewController, animated: false, completion: nil)
+    }
     
     lazy var fullNameLabel: UILabel = {
         let fullNameLabel = UILabel()
