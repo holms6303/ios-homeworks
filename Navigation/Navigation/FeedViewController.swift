@@ -27,13 +27,15 @@ class FeedViewController: UIViewController {
         
         let firstButton = UIButton()
         firstButton.toAutoLayout()
-        firstButton.backgroundColor = .systemGray
+        firstButton.backgroundColor = .purple
+        firstButton.layer.cornerRadius = 10.0
         firstButton.setTitle("First Button", for: .normal)
         firstButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
 
         let secondButton = UIButton()
         secondButton.toAutoLayout()
-        secondButton.backgroundColor = .systemRed
+        secondButton.backgroundColor = .orange
+        secondButton.layer.cornerRadius = 10.0
         secondButton.setTitle("Second Button", for: .normal)
         secondButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         

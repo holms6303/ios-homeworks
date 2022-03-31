@@ -116,7 +116,6 @@ class ProfileHeaderView: UIView {
     
     private var setStatusButtonTopConstraint: NSLayoutConstraint?
     private var statusLabelBottomConstraint: NSLayoutConstraint?
-    private var isExpanded = false
 
     private func setupLayout(){
 
@@ -161,8 +160,6 @@ class ProfileHeaderView: UIView {
     }
 
     @objc func buttonPressed(_ sender: UIButton) {
-
-        self.isExpanded.toggle()
 
         switch setStatusButtonTopConstraint?.constant {
         case 16:
