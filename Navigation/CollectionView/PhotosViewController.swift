@@ -31,8 +31,18 @@ class PhotosViewController: UIViewController {
         return collectionView
     }()
 
-    var alpha = GestureViewController().alphaView
+    lazy var alpha: UIImageView = {
+        let alphaView = UIImageView()
+        alphaView.toAutoLayout()
+        alphaView.clipsToBounds = true
+        alphaView.alpha = 0
+        alphaView.isHidden = true
+        alphaView.backgroundColor = .black
+        return alphaView
+    }()
+
     var closeButton = GestureViewController().closeButton
+    
 
     private var alphaTopConstraint: NSLayoutConstraint?
     private var alphaBottomConstraint: NSLayoutConstraint?
