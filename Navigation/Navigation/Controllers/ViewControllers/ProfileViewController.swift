@@ -33,7 +33,6 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
-        self.hidingKeyboard()
         self.fetchArticles { [weak self] articles in
             self?.dataSource = articles
             self?.tableView.reloadData()
@@ -60,11 +59,6 @@ class ProfileViewController: UIViewController {
             statusbarView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
             statusbarView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
             statusbarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    }
-
-    func hidingKeyboard(){
-        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tap)
     }
 
     private func setupView() {
@@ -143,7 +137,6 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             let posts = dataSource[indexPath.row - 1]
             let presentViewController = CellPresentViewController(presentPosts: [posts])
             self.navigationController?.present(presentViewController, animated: true)
-            return
         }
     }
 }

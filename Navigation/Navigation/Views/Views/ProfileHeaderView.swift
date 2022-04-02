@@ -85,6 +85,9 @@ class ProfileHeaderView: UIView {
         statusTextField.layer.borderColor = UIColor.black.cgColor
         statusTextField.layer.borderWidth = 1.0
         statusTextField.layer.cornerRadius = 12.0
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        self.addGestureRecognizer(tapGesture)
         
         statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
 
@@ -94,6 +97,10 @@ class ProfileHeaderView: UIView {
     @objc func statusTextChanged(_ textField: UITextField) {
         
         statusText = statusTextField.text!
+    }
+    
+    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        statusTextField.resignFirstResponder()
     }
     
     lazy var setStatusButton: UIButton = {
