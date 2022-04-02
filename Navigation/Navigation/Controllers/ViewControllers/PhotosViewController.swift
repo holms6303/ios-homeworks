@@ -41,8 +41,11 @@ class PhotosViewController: UIViewController {
         return alphaView
     }()
 
-    var closeButton = GestureViewController().closeButton
-    
+    private lazy var newCloseButton: UIButton = {
+        let closeButton = GestureViewController().closeButton
+        closeButton.isHidden = true
+        return closeButton
+    }()
 
     private var alphaTopConstraint: NSLayoutConstraint?
     private var alphaBottomConstraint: NSLayoutConstraint?
@@ -67,7 +70,7 @@ class PhotosViewController: UIViewController {
     private func setupView() {
         self.view.addSubview(self.collectionView)
         self.collectionView.addSubview(self.alpha)
-        self.collectionView.addSubview(self.closeButton)
+        self.collectionView.addSubview(self.newCloseButton)
 
         self.alphaTopConstraint = self.alpha.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
         self.alphaBottomConstraint = self.alpha.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
@@ -86,8 +89,8 @@ class PhotosViewController: UIViewController {
             self.alphaLeadingConstraint,
             self.alphaTrailingConstraint,
             
-            closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10.0)
+            newCloseButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            newCloseButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10.0)
         ].compactMap({ $0 }))
     }
     
@@ -148,13 +151,13 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
         
         if self.isExpanded {
             self.alpha.isHidden = false
-            self.closeButton.isHidden = false
+            self.newCloseButton.isHidden = false
         }
 
         let collectionItemBackspaceAnimation: (Bool) -> Void = { doneWorking in
             if doneWorking {
                 UIView.animate(withDuration: 0.5) {
-                    self.closeButton.isHidden = true
+                    self.newCloseButton.isHidden = true
                     self.alpha.alpha = 0
                     cell?.transform = .identity
                     cell?.center = cellCenterPoint!
@@ -172,9 +175,9 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
         }
 
         UIView.animate(withDuration: 0.3, delay: 0.5) {
-            self.closeButton.alpha = self.isExpanded ? 1 : 0
+            self.newCloseButton.alpha = self.isExpanded ? 1 : 0
         } completion: { _ in
-            self.closeButton.isHidden = !self.isExpanded
+            self.newCloseButton.isHidden = !self.isExpanded
         }
     }
     
