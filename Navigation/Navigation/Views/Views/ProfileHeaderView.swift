@@ -76,7 +76,6 @@ class ProfileHeaderView: UIView {
     lazy var statusTextField: UITextField = {
         let statusTextField = UITextField()
         statusTextField.toAutoLayout()
-        statusTextField.isHidden = true
         statusTextField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         statusTextField.textColor = .black
         statusTextField.textAlignment = .left
@@ -113,17 +112,9 @@ class ProfileHeaderView: UIView {
         
         return setStatusButton
     }()
-    
-    private var setStatusButtonTopConstraint: NSLayoutConstraint?
-    private var statusLabelBottomConstraint: NSLayoutConstraint?
 
     private func setupLayout(){
 
-        self.statusLabelBottomConstraint = self.statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34.0)
-
-        self.setStatusButtonTopConstraint = self.setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16.0)
-
-        
         NSLayoutConstraint.activate([
 
             avatarImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16.0),
@@ -138,19 +129,19 @@ class ProfileHeaderView: UIView {
 
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16.0),
             statusLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16.0),
-            self.statusLabelBottomConstraint,
+            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor),
             statusLabel.heightAnchor.constraint(equalToConstant: 50.0),
 
             statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16.0),
             statusTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16.0),
-            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: -10.0),
             statusTextField.heightAnchor.constraint(equalToConstant: 40.0),
+            statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -20.0),
 
             setStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16.0),
-            self.setStatusButtonTopConstraint,
+            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 46.0),
             setStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16.0),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50.0)
-        ].compactMap({ $0 }))
+        ])
     }
     
     private func setupView() {
@@ -161,34 +152,15 @@ class ProfileHeaderView: UIView {
 
     @objc func buttonPressed(_ sender: UIButton) {
 
-        switch setStatusButtonTopConstraint?.constant {
-        case 16:
-            UIView.animate(withDuration: 0.5) {
-                self.statusLabelBottomConstraint?.constant = -74
-                self.setStatusButtonTopConstraint?.constant = 56
-                self.statusTextField.isHidden = false
-                self.layoutIfNeeded()
-            }
-        case 56:
-            if self.statusTextField.hasText {
-                self.statusLabel.text = self.statusText
-                self.statusTextField.text = ""
-                self.statusTextField.layer.borderColor = UIColor.black.cgColor
-                self.statusTextField.layer.borderWidth = 1.0
-                self.statusTextField.isHidden = true
-                self.endEditing(true)
-
-                UIView.animate(withDuration: 0.5) {
-                    self.statusLabelBottomConstraint?.constant = -34
-                    self.setStatusButtonTopConstraint?.constant = 16
-                    self.layoutIfNeeded()
-                }
-            } else {
-                self.statusTextField.layer.borderColor = UIColor.red.cgColor
-                self.statusTextField.layer.borderWidth = 1.5
-            }
-        default:
-            print("Constants error")
+        if self.statusTextField.hasText {
+            self.statusLabel.text = self.statusText
+            self.statusTextField.text = ""
+            self.statusTextField.layer.borderColor = UIColor.black.cgColor
+            self.statusTextField.layer.borderWidth = 1.0
+            self.endEditing(true)
+        } else {
+            self.statusTextField.layer.borderColor = UIColor.red.cgColor
+            self.statusTextField.layer.borderWidth = 1.5
         }
     }
 }
