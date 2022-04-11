@@ -25,7 +25,7 @@
 		1FB8885027CA7DF30030B7E0 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8884F27CA7DF30030B7E0 /* News.swift */; };
 		1FB8885627CBAA8C0030B7E0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885527CBAA8C0030B7E0 /* PostTableViewCell.swift */; };
 		1FB8885927CBABA20030B7E0 /* Setupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885827CBABA20030B7E0 /* Setupable.swift */; };
-		1FB8885B27CBAE8D0030B7E0 /* UIColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885A27CBAE8D0030B7E0 /* UIColorExtention.swift */; };
+		1FB8885B27CBAE8D0030B7E0 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885A27CBAE8D0030B7E0 /* Extentions.swift */; };
 		1FB8886127CFC1470030B7E0 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8886027CFC1460030B7E0 /* PhotosTableViewCell.swift */; };
 		1FB8886527D4F78B0030B7E0 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8886427D4F78B0030B7E0 /* PhotosViewController.swift */; };
 		1FB8886727D5063E0030B7E0 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8886627D5063E0030B7E0 /* PhotosCollectionViewCell.swift */; };
@@ -54,7 +54,7 @@
 		1FB8884F27CA7DF30030B7E0 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		1FB8885527CBAA8C0030B7E0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		1FB8885827CBABA20030B7E0 /* Setupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setupable.swift; sourceTree = "<group>"; };
-		1FB8885A27CBAE8D0030B7E0 /* UIColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtention.swift; path = Navigation/Extentions/UIColorExtention.swift; sourceTree = SOURCE_ROOT; };
+		1FB8885A27CBAE8D0030B7E0 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extentions.swift; path = Navigation/Extentions/Extentions.swift; sourceTree = SOURCE_ROOT; };
 		1FB8886027CFC1460030B7E0 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		1FB8886427D4F78B0030B7E0 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		1FB8886627D5063E0030B7E0 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 		1F45D57227F8537A007139CC /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				1FB8885A27CBAE8D0030B7E0 /* UIColorExtention.swift */,
+				1FB8885A27CBAE8D0030B7E0 /* Extentions.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -275,7 +275,7 @@
 				1F05DA1127B2950C00070328 /* TabBar.swift in Sources */,
 				1FB8885927CBABA20030B7E0 /* Setupable.swift in Sources */,
 				1FB8886727D5063E0030B7E0 /* PhotosCollectionViewCell.swift in Sources */,
-				1FB8885B27CBAE8D0030B7E0 /* UIColorExtention.swift in Sources */,
+				1FB8885B27CBAE8D0030B7E0 /* Extentions.swift in Sources */,
 				1FB8885627CBAA8C0030B7E0 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

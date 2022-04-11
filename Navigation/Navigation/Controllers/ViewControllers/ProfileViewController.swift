@@ -132,9 +132,12 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.row == 0 {
             self.navigationController?.pushViewController(PhotosViewController(), animated: true)
         } else {
-            tableView.deselectRow(at: indexPath, animated: true)
-            let posts = dataSource[indexPath.row - 1]
-            let presentViewController = CellPresentViewController(presentPosts: [posts])
+            let presentViewController = CellPresentViewController()
+            presentViewController.author = dataSource[indexPath.row - 1].author
+            presentViewController.descriptionText = dataSource[indexPath.row - 1].description
+            presentViewController.image = dataSource[indexPath.row - 1].image
+            presentViewController.likes = dataSource[indexPath.row - 1].likes
+            presentViewController.views = dataSource[indexPath.row - 1].views
             self.navigationController?.present(presentViewController, animated: true)
         }
     }
