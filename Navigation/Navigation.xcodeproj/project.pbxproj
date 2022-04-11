@@ -24,7 +24,7 @@
 		1FB63D6427C6719C0055FEEA /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB63D6327C6719C0055FEEA /* LogInViewController.swift */; };
 		1FB8885027CA7DF30030B7E0 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8884F27CA7DF30030B7E0 /* News.swift */; };
 		1FB8885627CBAA8C0030B7E0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885527CBAA8C0030B7E0 /* PostTableViewCell.swift */; };
-		1FB8885927CBABA20030B7E0 /* Setupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885827CBABA20030B7E0 /* Setupable.swift */; };
+		1FB8885927CBABA20030B7E0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885827CBABA20030B7E0 /* Protocols.swift */; };
 		1FB8885B27CBAE8D0030B7E0 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885A27CBAE8D0030B7E0 /* Extentions.swift */; };
 		1FB8886127CFC1470030B7E0 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8886027CFC1460030B7E0 /* PhotosTableViewCell.swift */; };
 		1FB8886527D4F78B0030B7E0 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8886427D4F78B0030B7E0 /* PhotosViewController.swift */; };
@@ -53,7 +53,7 @@
 		1FB63D6327C6719C0055FEEA /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		1FB8884F27CA7DF30030B7E0 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		1FB8885527CBAA8C0030B7E0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-		1FB8885827CBABA20030B7E0 /* Setupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setupable.swift; sourceTree = "<group>"; };
+		1FB8885827CBABA20030B7E0 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		1FB8885A27CBAE8D0030B7E0 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extentions.swift; path = Navigation/Extentions/Extentions.swift; sourceTree = SOURCE_ROOT; };
 		1FB8886027CFC1460030B7E0 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		1FB8886427D4F78B0030B7E0 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 		1F45D56E27F85155007139CC /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				1FB8885827CBABA20030B7E0 /* Setupable.swift */,
+				1FB8885827CBABA20030B7E0 /* Protocols.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -273,7 +273,7 @@
 				1FB63D6427C6719C0055FEEA /* LogInViewController.swift in Sources */,
 				1F4B765427DF63A60066B96C /* CellPresentViewController.swift in Sources */,
 				1F05DA1127B2950C00070328 /* TabBar.swift in Sources */,
-				1FB8885927CBABA20030B7E0 /* Setupable.swift in Sources */,
+				1FB8885927CBABA20030B7E0 /* Protocols.swift in Sources */,
 				1FB8886727D5063E0030B7E0 /* PhotosCollectionViewCell.swift in Sources */,
 				1FB8885B27CBAE8D0030B7E0 /* Extentions.swift in Sources */,
 				1FB8885627CBAA8C0030B7E0 /* PostTableViewCell.swift in Sources */,

@@ -15,7 +15,13 @@ class PostTableViewCell: UITableViewCell {
         let image: String
         var likes: Int
         var views: Int
+        var isLiked: Bool
+        var isViewed: Bool
     }
+
+    weak var likesDelegate: ChangeLikesDelegate?
+    var likesCount = 0
+    var isLiked = false
 
     private lazy var backView: UIView = {
         let view = UIView()
@@ -93,10 +99,7 @@ class PostTableViewCell: UITableViewCell {
     }()
 
     @objc private func likesLabelClick(){
-        let string = likesLabel.text!
-        let numbers = string.compactMap{Int(String($0))}
-        let likesCount = numbers.reduce(0, { $0 * 10 + $1 }) + 1
-        likesLabel.text = "Likes: \(likesCount)"
+        self.likesDelegate?.likesChanged()
     }
 
     private lazy var viewsLabel: UILabel = {

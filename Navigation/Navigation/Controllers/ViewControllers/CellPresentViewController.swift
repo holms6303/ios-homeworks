@@ -14,8 +14,25 @@ class CellPresentViewController: UIViewController {
     var image: String?
     var likes: Int?
     var views: Int?
+    var index: IndexPath?
+    var isViewed: Bool?
 
     private var viewsCount = 0
+
+    weak var viewsDelegate: ChangeViewsDelegate?
+
+    private func updateViews() {
+        if var views = views {
+            if let viewed = isViewed {
+                if !viewed {
+                    views += 1
+                    viewsCount = views
+                } else {
+                    viewsCount = views
+                }
+            }
+        }
+    }
 
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -82,7 +99,7 @@ class CellPresentViewController: UIViewController {
 
     private lazy var likesLabel: UILabel = {
         let label = UILabel()
-//        updateViews()
+        updateViews()
         label.toAutoLayout()
         label.backgroundColor = .clear
         label.font = UIFont(name: "System", size: 16)
@@ -102,13 +119,19 @@ class CellPresentViewController: UIViewController {
         label.font = UIFont(name: "System", size: 16)
         label.textColor = .black
         label.setContentCompressionResistancePriority(UILayoutPriority(750), for: .vertical)
-        label.text = "Views: \(views ?? viewsCount)"
+        label.text = "Views: \(viewsCount)"
         return label
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+
+        guard let index = index else {return}
+        guard let viewed = isViewed else {return}
+        if !viewed {
+            self.viewsDelegate?.viewsChanged(at: index)
+        }
     }
 
     func setupView() {
@@ -125,8 +148,8 @@ class CellPresentViewController: UIViewController {
         NSLayoutConstraint.activate([
             self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20),
             self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-            self.scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            self.scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
 
             self.contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
             self.contentView.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),

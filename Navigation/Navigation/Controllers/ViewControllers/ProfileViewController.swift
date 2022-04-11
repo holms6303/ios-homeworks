@@ -7,7 +7,10 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, ChangeLikesDelegate, ChangeViewsDelegate {
+
+    private var dataSource: [Post] = []
+    private var likesCount = 0
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -23,9 +26,6 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
 
-    private var dataSource: [Post] = []
-    private var likesCount = 0
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
@@ -39,15 +39,11 @@ class ProfileViewController: UIViewController {
 
     func setStatusBarColor() {
 
-        let app = UIApplication.shared
-        let statusBarHeight: CGFloat = app.statusBarFrame.size.height
-
         let statusbarView = UIView()
         statusbarView.backgroundColor = UIColor.systemGray6
         view.addSubview(statusbarView)
 
-        statusbarView.translatesAutoresizingMaskIntoConstraints = false
-        statusbarView.heightAnchor.constraint(equalToConstant: statusBarHeight).isActive = true
+        statusbarView.toAutoLayout()
         statusbarView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
         statusbarView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         statusbarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -116,14 +112,19 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
                 return cell
             }
-
+            cell.likesDelegate = self
             let article = self.dataSource[indexPath.row - 1]
+            let likes = article.likes + likesCount
+            self.dataSource[indexPath.row - 1].likes = likes
             let viewModel = PostTableViewCell.ViewModel(author: article.author,
                                                         description: article.description,
                                                         image: article.image,
-                                                        likes: article.likes,
-                                                        views: article.views)
+                                                        likes: likes,
+                                                        views: article.views,
+                                                        isLiked: article.isLiked,
+                                                        isViewed: article.isViewed)
             cell.setup(with: viewModel)
+            likesCount = 0
             return cell
         }
     }
@@ -138,6 +139,11 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             presentViewController.image = dataSource[indexPath.row - 1].image
             presentViewController.likes = dataSource[indexPath.row - 1].likes
             presentViewController.views = dataSource[indexPath.row - 1].views
+            presentViewController.isViewed = dataSource[indexPath.row - 1].isViewed
+            if !dataSource[indexPath.row - 1].isViewed {
+                viewsChanged(at: indexPath)
+            }
+            dataSource[indexPath.row - 1].isViewed = true
             self.navigationController?.present(presentViewController, animated: true)
         }
     }
