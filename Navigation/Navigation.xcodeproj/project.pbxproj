@@ -17,12 +17,12 @@
 		1F05DA1B27B2B68000070328 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05DA1A27B2B68000070328 /* PostViewController.swift */; };
 		1F3C20A027B936F700B11839 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C209F27B936F700B11839 /* ProfileHeaderView.swift */; };
 		1F4080792804316A00F75FCF /* DetailPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4080782804316A00F75FCF /* DetailPhotoView.swift */; };
+		1F40807B28044AF400F75FCF /* PostInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F40807A28044AF400F75FCF /* PostInfo.swift */; };
 		1F4B765427DF63A60066B96C /* CellPresentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B765327DF63A60066B96C /* CellPresentViewController.swift */; };
 		1F84EB2B27B594D6005EE29B /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84EB2A27B594D6005EE29B /* InfoViewController.swift */; };
 		1F8A4EC027F32DB7009444EC /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8A4EBF27F32DB7009444EC /* Collection.swift */; };
 		1FB63D6427C6719C0055FEEA /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB63D6327C6719C0055FEEA /* LogInViewController.swift */; };
 		1FB8885027CA7DF30030B7E0 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8884F27CA7DF30030B7E0 /* News.swift */; };
-		1FB8885427CA884F0030B7E0 /* news.json in Resources */ = {isa = PBXBuildFile; fileRef = 1FB8885327CA884F0030B7E0 /* news.json */; };
 		1FB8885627CBAA8C0030B7E0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885527CBAA8C0030B7E0 /* PostTableViewCell.swift */; };
 		1FB8885927CBABA20030B7E0 /* Setupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885827CBABA20030B7E0 /* Setupable.swift */; };
 		1FB8885B27CBAE8D0030B7E0 /* UIColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8885A27CBAE8D0030B7E0 /* UIColorExtention.swift */; };
@@ -46,12 +46,12 @@
 		1F05DA1A27B2B68000070328 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		1F3C209F27B936F700B11839 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		1F4080782804316A00F75FCF /* DetailPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoView.swift; sourceTree = "<group>"; };
+		1F40807A28044AF400F75FCF /* PostInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInfo.swift; sourceTree = "<group>"; };
 		1F4B765327DF63A60066B96C /* CellPresentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellPresentViewController.swift; sourceTree = "<group>"; };
 		1F84EB2A27B594D6005EE29B /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		1F8A4EBF27F32DB7009444EC /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		1FB63D6327C6719C0055FEEA /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		1FB8884F27CA7DF30030B7E0 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
-		1FB8885327CA884F0030B7E0 /* news.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = news.json; sourceTree = "<group>"; };
 		1FB8885527CBAA8C0030B7E0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		1FB8885827CBABA20030B7E0 /* Setupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setupable.swift; sourceTree = "<group>"; };
 		1FB8885A27CBAE8D0030B7E0 /* UIColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtention.swift; path = Navigation/Extentions/UIColorExtention.swift; sourceTree = SOURCE_ROOT; };
@@ -102,7 +102,6 @@
 				1F05DA0527B28E1E00070328 /* Assets.xcassets */,
 				1F05DA0727B28E1E00070328 /* LaunchScreen.storyboard */,
 				1F05DA0A27B28E1E00070328 /* Info.plist */,
-				1FB8885327CA884F0030B7E0 /* news.json */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -113,6 +112,7 @@
 				1F8A4EBF27F32DB7009444EC /* Collection.swift */,
 				1FB8884F27CA7DF30030B7E0 /* News.swift */,
 				1FB8886827D60A150030B7E0 /* Photos.swift */,
+				1F40807A28044AF400F75FCF /* PostInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -243,7 +243,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FB8885427CA884F0030B7E0 /* news.json in Resources */,
 				1F05DA0927B28E1E00070328 /* LaunchScreen.storyboard in Resources */,
 				1F05DA0627B28E1E00070328 /* Assets.xcassets in Resources */,
 			);
@@ -269,6 +268,7 @@
 				1FB8885027CA7DF30030B7E0 /* News.swift in Sources */,
 				1F05D9FF27B28E1D00070328 /* SceneDelegate.swift in Sources */,
 				1F8A4EC027F32DB7009444EC /* Collection.swift in Sources */,
+				1F40807B28044AF400F75FCF /* PostInfo.swift in Sources */,
 				1F84EB2B27B594D6005EE29B /* InfoViewController.swift in Sources */,
 				1FB63D6427C6719C0055FEEA /* LogInViewController.swift in Sources */,
 				1F4B765427DF63A60066B96C /* CellPresentViewController.swift in Sources */,

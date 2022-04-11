@@ -19,9 +19,9 @@ class CellPresentViewController: UIViewController {
         return tableView
     }()
     
-    private let presentPosts: [News.Article]
+    private let presentPosts: [Post]
 
-    init(presentPosts: [News.Article]) {
+    init(presentPosts: [Post]) {
         self.presentPosts = presentPosts
         super.init(nibName: nil, bundle: nil)
     }

@@ -23,20 +23,12 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
 
-    private lazy var jsonDecoder: JSONDecoder = {
-        return JSONDecoder()
-    }()
-
-    private var dataSource: [News.Article] = []
-    private let tapGestureRecogniser = UITapGestureRecognizer()
+    private var dataSource: [Post] = []
+    private var likesCount = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
-        self.fetchArticles { [weak self] articles in
-            self?.dataSource = articles
-            self?.tableView.reloadData()
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -47,24 +39,25 @@ class ProfileViewController: UIViewController {
 
     func setStatusBarColor() {
 
-            let app = UIApplication.shared
-            let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+        let app = UIApplication.shared
+        let statusBarHeight: CGFloat = app.statusBarFrame.size.height
 
-            let statusbarView = UIView()
-            statusbarView.backgroundColor = UIColor.systemGray6
-            view.addSubview(statusbarView)
+        let statusbarView = UIView()
+        statusbarView.backgroundColor = UIColor.systemGray6
+        view.addSubview(statusbarView)
 
-            statusbarView.translatesAutoresizingMaskIntoConstraints = false
-            statusbarView.heightAnchor.constraint(equalToConstant: statusBarHeight).isActive = true
-            statusbarView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
-            statusbarView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-            statusbarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        statusbarView.translatesAutoresizingMaskIntoConstraints = false
+        statusbarView.heightAnchor.constraint(equalToConstant: statusBarHeight).isActive = true
+        statusbarView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+        statusbarView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        statusbarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
 
     private func setupView() {
 
         self.view.addSubview(self.tableView)
         self.view.backgroundColor = .systemGray6
+        self.addDataSource()
 
         NSLayoutConstraint.activate([
             
@@ -74,19 +67,25 @@ class ProfileViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
+    private func addDataSource() {
+        self.dataSource.append(post1)
+        self.dataSource.append(post2)
+        self.dataSource.append(post3)
+        self.dataSource.append(post4)
+    }
 
-    private func fetchArticles(completion: @escaping ([News.Article]) -> Void) {
-        if let path = Bundle.main.path(forResource: "news", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-                let news = try self.jsonDecoder.decode(News.self, from: data)
-                completion(news.articles)
-            } catch let error {
-                print("parse error: \(error.localizedDescription)")
-            }
-        } else {
-            fatalError("Invalid filename/path.")
-        }
+    func viewsChanged(at indexPath: IndexPath) {
+        dataSource[indexPath.row - 1].views += 1
+        self.tableView.reloadData()
+    }
+
+    func likesChanged() {
+        likesCount += 1
+        self.tableView.reloadData()
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
 
