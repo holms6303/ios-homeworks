@@ -31,30 +31,7 @@ class PhotosViewController: UIViewController {
         return collectionView
     }()
 
-    lazy var alpha: UIImageView = {
-        let alphaView = UIImageView()
-        alphaView.toAutoLayout()
-        alphaView.clipsToBounds = true
-        alphaView.alpha = 0
-        alphaView.isHidden = true
-        alphaView.backgroundColor = .black
-        return alphaView
-    }()
-
-    private lazy var newCloseButton: UIButton = {
-        let closeButton = GestureViewController().closeButton
-        closeButton.isHidden = true
-        return closeButton
-    }()
-
-    private var alphaTopConstraint: NSLayoutConstraint?
-    private var alphaBottomConstraint: NSLayoutConstraint?
-    private var alphaLeadingConstraint: NSLayoutConstraint?
-    private var alphaTrailingConstraint: NSLayoutConstraint?
-    
-    private var isExpanded = false
-
-    private var backSpaceAnimationCompletion: ((Bool) -> (Void))?
+    let detailPhotoView = DetailPhotoView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,44 +45,27 @@ class PhotosViewController: UIViewController {
     }
     
     private func setupView() {
-        self.view.addSubview(self.collectionView)
-        self.collectionView.addSubview(self.alpha)
-        self.collectionView.addSubview(self.newCloseButton)
-
-        self.alphaTopConstraint = self.alpha.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
-        self.alphaBottomConstraint = self.alpha.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
-        self.alphaLeadingConstraint = self.alpha.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
-        self.alphaTrailingConstraint = self.alpha.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        self.view.backgroundColor = .white
+        self.detailPhotoView.toAutoLayout()
+        self.view.addSubviews(self.collectionView, self.detailPhotoView)
 
         NSLayoutConstraint.activate([
-
-            collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             
-            self.alphaTopConstraint,
-            self.alphaBottomConstraint,
-            self.alphaLeadingConstraint,
-            self.alphaTrailingConstraint,
-            
-            newCloseButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            newCloseButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10.0)
-        ].compactMap({ $0 }))
+            self.detailPhotoView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            self.detailPhotoView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            self.detailPhotoView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.detailPhotoView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        ])
     }
     
     private func itemSize(for width: CGFloat, with spacing: CGFloat) -> CGSize {
         let neededWidth = width - 4 * spacing
         let itemWidth = floor(neededWidth / Constants.itemCount)
         return CGSize(width: itemWidth, height: itemWidth)
-    }
-
-    private func checkAnimationCompletionFinished(using completionHandler: (Bool) -> Void) {
-        completionHandler(true)
-    }
-    
-    @objc func didTapCloseButton() {
-        checkAnimationCompletionFinished(using: self.backSpaceAnimationCompletion!)
     }
 }
 
@@ -138,46 +98,12 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-
-        let cellSize = (UIScreen.main.bounds.width / 3) - 10
-        let calculateScale = UIScreen.main.bounds.width / cellSize
-        let expandTransform = CGAffineTransform(scaleX: calculateScale, y: calculateScale)
-
-        let attributes = collectionView.layoutAttributesForItem(at: indexPath)
-        let cellCenterPoint = attributes?.center
-
-        self.isExpanded.toggle()
-        
-        if self.isExpanded {
-            self.alpha.isHidden = false
-            self.newCloseButton.isHidden = false
-        }
-
-        let collectionItemBackspaceAnimation: (Bool) -> Void = { doneWorking in
-            if doneWorking {
-                UIView.animate(withDuration: 0.5) {
-                    self.newCloseButton.isHidden = true
-                    self.alpha.alpha = 0
-                    cell?.transform = .identity
-                    cell?.center = cellCenterPoint!
-                    self.view.layoutIfNeeded()
-                }
-            }
-        }
-        backSpaceAnimationCompletion = collectionItemBackspaceAnimation
-
         UIView.animate(withDuration: 0.5) {
-            cell?.transform = self.isExpanded ? expandTransform : .identity
-            cell?.center = self.isExpanded ? self.alpha.center : cellCenterPoint!
-            self.alpha.alpha = self.isExpanded ? 0.5 : 0
-            self.view.layoutIfNeeded()
-        }
-
-        UIView.animate(withDuration: 0.3, delay: 0.5) {
-            self.newCloseButton.alpha = self.isExpanded ? 1 : 0
-        } completion: { _ in
-            self.newCloseButton.isHidden = !self.isExpanded
+            let image = collectionDataSource[indexPath.item].image
+            self.detailPhotoView.setDetailImage(image: image)
+            self.detailPhotoView.alpha = 1
+            self.title = ""
+            self.navigationController?.navigationBar.backgroundColor = .white
         }
     }
     
