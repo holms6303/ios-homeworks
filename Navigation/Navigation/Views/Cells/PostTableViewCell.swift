@@ -47,6 +47,14 @@ class PostTableViewCell: UITableViewCell {
         return stackView
     }()
 
+    private lazy var likesAndViewsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.toAutoLayout()
+        return stackView
+    }()
+
     private lazy var authorLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
@@ -78,14 +86,6 @@ class PostTableViewCell: UITableViewCell {
         return imageView
     }()
 
-    private lazy var likesAndViewsStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.toAutoLayout()
-        return stackView
-    }()
-
     private lazy var likesLabel: UILabel = {
         let likesLabel = UILabel()
         likesLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
@@ -98,10 +98,6 @@ class PostTableViewCell: UITableViewCell {
         return likesLabel
     }()
 
-    @objc private func likesLabelClick(){
-        self.likesDelegate?.likesChanged()
-    }
-
     private lazy var viewsLabel: UILabel = {
         let viewsLabel = UILabel()
         viewsLabel.textAlignment = .right
@@ -110,6 +106,10 @@ class PostTableViewCell: UITableViewCell {
         viewsLabel.toAutoLayout()
         return viewsLabel
     }()
+
+    @objc private func likesLabelClick(){
+        self.likesDelegate?.likesChanged()
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
